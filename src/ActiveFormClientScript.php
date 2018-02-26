@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
  * @see \yii\widgets\ActiveFormClientScriptBehavior
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 2.1.0
+ * @since 1.0
  */
 class ActiveFormClientScript extends \yii\widgets\ActiveFormClientScript
 {

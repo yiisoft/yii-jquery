@@ -12,8 +12,10 @@ use yii\web\AssetBundle;
 /**
  * This asset bundle provides the javascript files needed for the [[EmailValidator]]s client validation.
  *
+ * @see https://github.com/bestiejs/punycode.js/
+ *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @since 1.0
  */
 class PunycodeAsset extends AssetBundle
 {

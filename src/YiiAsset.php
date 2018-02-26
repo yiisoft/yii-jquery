@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
  * This asset bundle provides the base JavaScript files for the Yii Framework.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @since 1.0
  */
 class YiiAsset extends AssetBundle
 {

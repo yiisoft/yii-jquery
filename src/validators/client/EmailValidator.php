@@ -20,7 +20,7 @@ use yii\web\JsExpression;
  * @see ValidationAsset
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 2.1.0
+ * @since 1.0
  */
 class EmailValidator extends ClientValidator
 {

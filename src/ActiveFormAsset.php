@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
  * The asset bundle for the [[ActiveForm]] widget.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @since 1.0
  */
 class ActiveFormAsset extends AssetBundle
 {

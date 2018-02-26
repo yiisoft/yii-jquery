@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
  * This asset bundle provides the [jQuery](http://jquery.com/) JavaScript library.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @since 1.0
  */
 class JqueryAsset extends AssetBundle
 {
