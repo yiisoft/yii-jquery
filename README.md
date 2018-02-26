@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+        <img src="https://brand.jquery.org/resources/jquery-mark-light.gif" height="160px">
     </a>
     <h1 align="center">JQuery Extension for Yii 2</h1>
     <br>

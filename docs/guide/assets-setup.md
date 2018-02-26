@@ -115,7 +115,10 @@ return [
                 ],
                 yii\jquery\PunycodeAsset::class => [
                     'sourcePath' => null,
-                    'baseUrl' => 'https://code.jquery.com/ui/1.12.1',
+                    'baseUrl' => 'https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1',
+                    'js' => [
+                        'punycode.min.js'
+                    ],
                 ],
             ],
         ],
