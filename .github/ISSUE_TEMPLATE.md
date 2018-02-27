@@ -6,9 +6,10 @@
 
 ### Additional info
 
-| Q                | A
-| ---------------- | ---
-| Yii version      |
-| JQuery version   |
-| PHP version      |
-| Operating system |
+| Q                  | A
+| ------------------ | ---
+| Yii version        |
+| Yii JQuery version |
+| JQuery version     |
+| PHP version        |
+| Operating system   |
