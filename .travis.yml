@@ -30,6 +30,7 @@ matrix:
     # have a separate branch for javascript tests
     - language: node_js
       node_js: 6
+      php: 7.1
       env: TASK_TESTS_PHP=0 TASK_TESTS_JS=1
       # overwrite services used for PHP tests
       services:
@@ -54,7 +55,7 @@ install:
 
 before_script:
   - |
-    if [ $TRAVIS_PHP_VERSION = '5.6' ]; then
+    if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
       PHPUNIT_FLAGS="--coverage-clover=coverage.clover"
     fi
   - |
