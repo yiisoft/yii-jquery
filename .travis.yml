@@ -28,9 +28,7 @@ matrix:
     - php: nightly
 
     # have a separate branch for javascript tests
-    - language: node_js
-      node_js: 6
-      php: 7.1
+    - php: 7.1
       env: TASK_TESTS_PHP=0 TASK_TESTS_JS=1
       # overwrite services used for PHP tests
       services:
@@ -41,6 +39,14 @@ cache:
     - vendor
     - $HOME/.composer/cache
     - $HOME/.npm
+
+
+before_install:
+  # setup nodeJS for JS tests
+  - |
+    if [ $TASK_TESTS_JS == 1 ]; then
+      travis_retry nvm install 6.10
+    fi
 
 install:
   - travis_retry composer self-update && composer --version
