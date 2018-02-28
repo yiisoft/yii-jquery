@@ -248,7 +248,7 @@ describe('yii.gridView', function () {
                 $gridView.yiiGridView('applyFilter');
 
                 var expectedHtml = '<form action="/posts/index" method="get" class="gridview-filter-form" ' +
-                    'style="display:none" data-pjax="">' +
+                    'style="display:none">' +
                     '<input type="hidden" name="PostSearch[name]" value="a">' +
                     '<input type="hidden" name="PostSearch[category_id]" value="1">' +
                     '<input type="hidden" name="PostSearch[tags][]" value="1">' +
