@@ -154,8 +154,7 @@
                 action: url,
                 method: 'get',
                 'class': 'gridview-filter-form',
-                style: 'display:none',
-                'data-pjax': ''
+                style: 'display:none'
             }).appendTo($grid);
             $.each(data, function (name, values) {
                 $.each(values, function (index, value) {

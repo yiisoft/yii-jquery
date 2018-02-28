@@ -21,24 +21,14 @@ var StringUtils = {
 describe('yii', function () {
     var yiiPath = 'src/assets/yii.js';
     var jQueryPath = 'node_modules/jquery/dist/jquery.js';
-    var pjaxPath = 'node_modules/yii2-pjax/jquery.pjax.js';
     var sandbox;
     var $;
     var yii;
     var yiiGetBaseCurrentUrlStub;
     var yiiGetCurrentUrlStub;
 
-    function registerPjax() {
-        var code = fs.readFileSync(pjaxPath);
-        var script = new vm.Script(code);
-        var sandbox = {jQuery: $, window: window, navigator: window.navigator};
-        var context = new vm.createContext(sandbox);
-        script.runInContext(context);
-    }
 
     function registerTestableCode() {
-        registerPjax();
-
         var code = fs.readFileSync(yiiPath);
         var script = new vm.Script(code);
         sandbox = {window: window, document: window.document, XMLHttpRequest: window.XMLHttpRequest};
@@ -46,30 +36,6 @@ describe('yii', function () {
 
         script.runInContext(context);
         yii = sandbox.window.yii;
-    }
-
-    /**
-     * Mapping of pjax data attributes with according plugin options
-     * @type {{}}
-     */
-    var pjaxAttributes = {
-        'data-pjax-push-state': 'push',
-        'data-pjax-replace-state': 'replace',
-        'data-pjax-scrollto': 'scrollTo',
-        'data-pjax-push-redirect': 'pushRedirect',
-        'data-pjax-replace-redirect': 'replaceRedirect',
-        'data-pjax-skip-outer-containers': 'skipOuterContainers',
-        'data-pjax-timeout': 'timeout'
-    };
-
-    /**
-     * Add pjax related attributes to all elements with "data-pjax" attribute. Used to prevent copy pasting and for
-     * better readability of the test HTML data.
-     */
-    function addPjaxAttributes() {
-        $.each(pjaxAttributes, function (name, value) {
-            $('[data-pjax]').attr(name, value);
-        });
     }
 
     jsdom({
@@ -81,7 +47,6 @@ describe('yii', function () {
         $ = window.$;
         registerTestableCode();
         sinon = require('sinon');
-        addPjaxAttributes();
         yiiGetBaseCurrentUrlStub = sinon.stub(yii, 'getBaseCurrentUrl', function () {
             return 'http://foo.bar';
         });
@@ -259,24 +224,18 @@ describe('yii', function () {
 
     describe('handleAction method', function () {
         var windowLocationAssignStub;
-        var pjaxClickStub;
-        var pjaxSubmitStub;
         var formSubmitsCount;
         var initialFormsCount;
         var $savedSubmittedForm;
 
         beforeEach(function () {
             windowLocationAssignStub = sinon.stub(window.location, 'assign');
-            pjaxClickStub = sinon.stub($.pjax, 'click');
-            pjaxSubmitStub = sinon.stub($.pjax, 'submit');
             initialFormsCount = $('form').length;
             countFormSubmits();
         });
 
         afterEach(function () {
             windowLocationAssignStub.restore();
-            pjaxClickStub.restore();
-            pjaxSubmitStub.restore();
             formSubmitsCount = undefined;
             initialFormsCount = undefined;
             $savedSubmittedForm = undefined;
@@ -296,104 +255,28 @@ describe('yii', function () {
 
         function verifyNoActions() {
             assert.isFalse(windowLocationAssignStub.called);
-            assert.isFalse(pjaxClickStub.called);
 
             assert.equal(formSubmitsCount, 0);
-            assert.isFalse(pjaxSubmitStub.called);
             assert.equal($('form').length, initialFormsCount);
         }
 
         function verifyPageLoad(url) {
             assert.isTrue(windowLocationAssignStub.calledOnce);
             assert.deepEqual(windowLocationAssignStub.getCall(0).args, [url]);
-            assert.isFalse(pjaxClickStub.called);
 
             assert.equal(formSubmitsCount, 0);
-            assert.isFalse(pjaxSubmitStub.called);
             assert.equal($('form').length, initialFormsCount);
-        }
-
-        function verifyPageLoadWithPjax($element, event, pjaxContainerId) {
-            assert.isFalse(windowLocationAssignStub.called);
-            assert.isTrue(pjaxClickStub.calledOnce);
-
-            assert.equal(formSubmitsCount, 0);
-            assert.isFalse(pjaxSubmitStub.called);
-            assert.equal($('form').length, initialFormsCount);
-
-            assert.strictEqual(pjaxClickStub.getCall(0).args[0], event);
-
-            var pjaxOptions = pjaxClickStub.getCall(0).args[1];
-
-            // container needs to be checked separately
-            assert.equal(pjaxOptions.container, pjaxContainerId || 'body');
-            delete pjaxOptions.container;
-
-            assert.deepEqual(pjaxOptions, {
-                push: true,
-                replace: true,
-                scrollTo: 'scrollTo',
-                pushRedirect: 'pushRedirect',
-                replaceRedirect: 'replaceRedirect',
-                skipOuterContainers: 'skipOuterContainers',
-                timeout: 'timeout',
-                originalEvent: event,
-                originalTarget: $element
-            });
         }
 
         function verifyFormSubmit($form) {
             assert.isFalse(windowLocationAssignStub.called);
-            assert.isFalse(pjaxClickStub.called);
 
             assert.equal(formSubmitsCount, 1);
-            assert.isFalse(pjaxSubmitStub.called);
             assert.equal($('form').length, initialFormsCount);
 
             if ($form) {
                 assert.equal($form.attr('id'), $savedSubmittedForm.attr('id'));
             }
-        }
-
-        function verifyFormSubmitWithPjax($element, event, $form) {
-            assert.isFalse(windowLocationAssignStub.called);
-            assert.isFalse(pjaxClickStub.called);
-
-            assert.equal(formSubmitsCount, 1);
-            assert.isTrue(pjaxSubmitStub.calledOnce);
-            assert.equal($('form').length, initialFormsCount);
-
-            if ($form) {
-                assert.equal($form.attr('id'), $savedSubmittedForm.attr('id'));
-            }
-
-            var pjaxEvent = pjaxSubmitStub.getCall(0).args[0];
-            assert.instanceOf(pjaxEvent, $.Event);
-            assert.equal(pjaxEvent.type, 'submit');
-
-            var pjaxOptions = pjaxSubmitStub.getCall(0).args[1];
-
-            // container needs to be checked separately
-            if (typeof pjaxOptions.container === 'string') {
-                assert.equal(pjaxOptions.container, 'body');
-            } else {
-                assert.instanceOf(pjaxOptions.container, $);
-                assert.equal(pjaxOptions.container.attr('id'), 'body');
-            }
-
-            delete pjaxOptions.container;
-
-            assert.deepEqual(pjaxOptions, {
-                push: true,
-                replace: true,
-                scrollTo: 'scrollTo',
-                pushRedirect: 'pushRedirect',
-                replaceRedirect: 'replaceRedirect',
-                skipOuterContainers: 'skipOuterContainers',
-                timeout: 'timeout',
-                originalEvent: event,
-                originalTarget: $element
-            });
         }
 
         describe('with no data-method', function () {
@@ -502,7 +385,6 @@ describe('yii', function () {
                             assert.lengthOf($element, 1);
 
                             yii.handleAction($element, event);
-                            verifyPageLoadWithPjax($element, event, expectedPjaxContainerId);
                         });
                     });
                 });
@@ -542,7 +424,6 @@ describe('yii', function () {
 
                             yii.handleAction($element, event);
 
-                            verifyFormSubmitWithPjax($element, event, $form);
                             assert.equal($savedSubmittedForm.get(0).outerHTML, initialFormHtml);
                         });
                     });
@@ -621,8 +502,6 @@ describe('yii', function () {
                         assert.lengthOf($element, 1);
 
                         yii.handleAction($element, event);
-
-                        verifyFormSubmitWithPjax($element, event);
 
                         var expectedFormHtml = '<form method="get" action="/tests/index" style="display: none;">' +
                             '<input name="foo" value="1" type="hidden">' +
@@ -717,8 +596,6 @@ describe('yii', function () {
                         assert.lengthOf($form, 1);
 
                         yii.handleAction($element, event);
-
-                        verifyFormSubmitWithPjax($element, event, $form);
 
                         var expectedSubmittedFormHtml = '<form id="method-form" method="post" action="/search">' +
                             '<input name="query" value="a">' +

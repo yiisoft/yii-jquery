@@ -156,45 +156,12 @@ window.yii = (function ($) {
                 action = $e.attr('href'),
                 isValidAction = action && action !== '#',
                 params = $e.data('params'),
-                areValidParams = params && $.isPlainObject(params),
-                pjax = $e.data('pjax'),
-                usePjax = pjax !== undefined && pjax !== 0 && $.support.pjax,
-                pjaxContainer,
-                pjaxOptions = {};
-
-            if (usePjax) {
-                pjaxContainer = $e.data('pjax-container');
-                if (pjaxContainer === undefined || !pjaxContainer.length) {
-                    pjaxContainer = $e.closest('[data-pjax-container]').attr('id')
-                        ? ('#' + $e.closest('[data-pjax-container]').attr('id'))
-                        : '';
-                }
-                if (!pjaxContainer.length) {
-                    pjaxContainer = 'body';
-                }
-                pjaxOptions = {
-                    container: pjaxContainer,
-                    push: !!$e.data('pjax-push-state'),
-                    replace: !!$e.data('pjax-replace-state'),
-                    scrollTo: $e.data('pjax-scrollto'),
-                    pushRedirect: $e.data('pjax-push-redirect'),
-                    replaceRedirect: $e.data('pjax-replace-redirect'),
-                    skipOuterContainers: $e.data('pjax-skip-outer-containers'),
-                    timeout: $e.data('pjax-timeout'),
-                    originalEvent: event,
-                    originalTarget: $e
-                };
-            }
+                areValidParams = params && $.isPlainObject(params);
 
             if (method === undefined) {
                 if (isValidAction) {
-                    usePjax ? $.pjax.click(event, pjaxOptions) : window.location.assign(action);
+                    window.location.assign(action);
                 } else if ($e.is(':submit') && $form.length) {
-                    if (usePjax) {
-                        $form.on('submit', function (e) {
-                            $.pjax.submit(e, pjaxOptions);
-                        });
-                    }
                     $form.trigger('submit');
                 }
                 return;
@@ -242,12 +209,6 @@ window.yii = (function ($) {
             if (areValidParams) {
                 $.each(params, function (name, value) {
                     $form.append($('<input/>').attr({name: name, value: value, type: 'hidden'}));
-                });
-            }
-
-            if (usePjax) {
-                $form.on('submit', function (e) {
-                    $.pjax.submit(e, pjaxOptions);
                 });
             }
 
