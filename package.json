@@ -6,7 +6,9 @@
     "doc": "docs",
     "test": "tests/js/tests"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "jsdom": "^9.8.3",

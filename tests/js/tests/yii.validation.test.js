@@ -18,7 +18,7 @@ var StringUtils = {
 };
 
 var jsdom = require('mocha-jsdom');
-var punycode = require('../../../vendor/bower-asset/punycode/punycode');
+var punycode = require('../../../node_modules/punycode/punycode');
 
 var fs = require('fs');
 var vm = require('vm');
@@ -57,7 +57,7 @@ describe('yii.validation', function () {
             };
         }
 
-        var path = 'framework/jquery/assets/yii.validation.js';
+        var path = 'src/assets/yii.validation.js';
 
         if (code === undefined) {
             code = fs.readFileSync(path);
@@ -75,7 +75,7 @@ describe('yii.validation', function () {
         yii = sandbox.yii;
     }
 
-    jsdom({src: fs.readFileSync('vendor/bower-asset/jquery/dist/jquery.js', 'utf-8')});
+    jsdom({src: fs.readFileSync('node_modules/jquery/dist/jquery.js', 'utf-8')});
 
     before(function () {
         $ = window.$;
@@ -1270,117 +1270,6 @@ describe('yii.validation', function () {
                 assert.equal(inputSpy.callCount, 2);
                 assert.strictEqual(inputSpy.getCall(0).args[0], undefined);
                 assert.equal(inputSpy.getCall(1).args[0], expectedValue);
-            });
-        });
-    });
-
-    describe('captcha validator', function () {
-        // Converted using yii\captcha\CaptchaAction generateValidationHash() method
-        var hashes = {'Code': 379, 'code': 411};
-        var caseInSensitiveData = {
-            'valid code in lowercase': ['code', true],
-            'valid code in uppercase': ['CODE', true],
-            'valid code as is': ['Code', true],
-            'invalid code': ['invalid code', false]
-        };
-        var caseSensitiveData = {
-            'valid code in lowercase': ['code', false],
-            'valid code in uppercase': ['CODE', false],
-            'valid code as is': ['Code', true],
-            'invalid code': ['invalid code', false]
-        };
-        var defaultOptions = {
-            message: 'Invalid value.',
-            hashKey: 'hashKey'
-        };
-        var hashesData = [hashes['Code'], hashes['code']];
-        var jQueryDataStub;
-
-        beforeEach(function () {
-            jQueryDataStub = sinon.stub($.prototype, 'data', function () {
-                return hashesData;
-            });
-        });
-
-        afterEach(function () {
-            jQueryDataStub.restore();
-        });
-
-        function verifyJQueryDataStub() {
-            assert.isTrue(jQueryDataStub.calledOnce);
-            assert.equal(jQueryDataStub.getCall(0).args[0], defaultOptions.hashKey);
-        }
-
-        describe('with empty string, skip on empty', function () {
-            it(VALIDATOR_SUCCESS_MESSAGE, function () {
-                var messages = [];
-                var options = $.extend({}, defaultOptions, {skipOnEmpty: true});
-
-                yii.validation.captcha('', messages, options);
-                assert.deepEqual(messages, []);
-
-                assert.isFalse(jQueryDataStub.called);
-            });
-        });
-
-        describe('with ajax, case insensitive', function () {
-            withData(caseInSensitiveData, function (value, expectValid) {
-                it(getValidatorMessage(expectValid), function () {
-                    var messages = [];
-                    var expectedMessages = expectValid ? [] : ['Invalid value.'];
-
-                    yii.validation.captcha(value, messages, defaultOptions);
-                    assert.deepEqual(messages, expectedMessages);
-
-                    verifyJQueryDataStub();
-                });
-            });
-        });
-
-        describe('with ajax, case sensitive', function () {
-            withData(caseSensitiveData, function (value, expectValid) {
-                it(getValidatorMessage(expectValid), function () {
-                    var messages = [];
-                    var expectedMessages = expectValid ? [] : ['Invalid value.'];
-                    var options = $.extend({}, defaultOptions, {caseSensitive: true});
-
-                    yii.validation.captcha(value, messages, options);
-                    assert.deepEqual(messages, expectedMessages);
-
-                    verifyJQueryDataStub();
-                });
-            });
-        });
-
-        describe('with hash, case insensitive', function () {
-            withData(caseInSensitiveData, function (value, expectValid) {
-                it(getValidatorMessage(expectValid), function () {
-                    hashesData = undefined;
-                    var messages = [];
-                    var expectedMessages = expectValid ? [] : ['Invalid value.'];
-                    var options = $.extend({}, defaultOptions, {hash: hashes['code']});
-
-                    yii.validation.captcha(value, messages, options);
-                    assert.deepEqual(messages, expectedMessages);
-
-                    verifyJQueryDataStub();
-                });
-            });
-        });
-
-        describe('with hash, case sensitive', function () {
-            withData(caseSensitiveData, function (value, expectValid) {
-                it(getValidatorMessage(expectValid), function () {
-                    hashesData = undefined;
-                    var messages = [];
-                    var expectedMessages = expectValid ? [] : ['Invalid value.'];
-                    var options = $.extend({}, defaultOptions, {hash: hashes['Code'], caseSensitive: true});
-
-                    yii.validation.captcha(value, messages, options);
-                    assert.deepEqual(messages, expectedMessages);
-
-                    verifyJQueryDataStub();
-                });
             });
         });
     });
