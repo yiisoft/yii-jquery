@@ -22,7 +22,7 @@ use yii\helpers\Url;
  * <?= yii\grid\GridView::widget([
  *     'dataProvider' => $dataProvider,
  *     'as clientScript' => [
- *         'class' => yii\jquery\GridViewClientScript::class
+ *         '__class' => yii\jquery\GridViewClientScript::class
  *     ],
  *     'columns' => [
  *         'id',

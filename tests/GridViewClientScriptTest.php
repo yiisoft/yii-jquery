@@ -60,7 +60,7 @@ class GridViewClientScriptTest extends TestCase
             ),
             'filterUrl' => 'http://example.com/filter',
             'as clientScript' => [
-                'class' => GridViewClientScript::class
+                '__class' => GridViewClientScript::class
             ],
         ]);
 
