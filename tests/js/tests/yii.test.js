@@ -282,7 +282,6 @@ describe('yii', function () {
         describe('with no data-method', function () {
             var noActionsMessage = 'should not do any actions related with page load and form submit';
             var pageLoadMessage = 'should load new page using the link from "href" attribute';
-            var pageLoadWithPjaxMessage = pageLoadMessage + ' with pjax';
 
             describe('with invalid elements or configuration', function () {
                 describe('with no form', function () {
@@ -291,16 +290,10 @@ describe('yii', function () {
                         'link, no href': ['.link-no-href'],
                         'link, empty href': ['.link-empty-href'],
                         'link, href contains anchor ("#") only': ['.link-anchor-href'],
-                        'link, no href, data-pjax': ['.link-no-href-pjax'],
-                        'link, empty href, data-pjax': ['.link-empty-href-pjax'],
-                        'link, href contains anchor ("#") only, data-pjax': ['.link-anchor-href-pjax'],
                         // Not links
                         'not submit, no form': ['.not-submit-no-form'],
                         'submit, no form': ['.submit-no-form'],
                         'submit, data-form, form does not exist': ['.submit-form-not-exist'],
-                        'not submit, no form, data-pjax': ['.not-submit-no-form-pjax'],
-                        'submit, no form, data-pjax': ['.submit-no-form-pjax'],
-                        'submit, data-form, form does not exist, data-pjax': ['.submit-form-not-exist-pjax']
                     }, function (elementSelector) {
                         it(noActionsMessage, function () {
                             var $element = $('.handle-action .no-method .invalid .no-form').find(elementSelector);
@@ -316,12 +309,6 @@ describe('yii', function () {
                     withData({
                         'not submit, data-form': ['.not-submit-outside-form', '#not-submit-separate-form'],
                         'not submit, inside a form': ['.not-submit-inside-form', '#not-submit-parent-form'],
-                        'not submit, data-form, data-pjax': [
-                            '.not-submit-outside-form-pjax', '#not-submit-separate-form'
-                        ],
-                        'not submit, inside a form, data-pjax': [
-                            '.not-submit-inside-form-pjax', '#not-submit-parent-form-pjax'
-                        ]
                     }, function (elementSelector, formSelector) {
                         it(noActionsMessage, function () {
                             var $element = $('.handle-action .no-method .invalid .form').find(elementSelector);
@@ -341,7 +328,6 @@ describe('yii', function () {
                 describe('with no form', function () {
                     withData({
                         'link': ['.link'],
-                        'link, data-pjax="0"': ['.link-pjax-0']
                     }, function (elementSelector) {
                         it(pageLoadMessage, function () {
                             var $element = $('.handle-action .no-method .valid').find(elementSelector);
@@ -349,42 +335,6 @@ describe('yii', function () {
 
                             yii.handleAction($element);
                             verifyPageLoad('/tests/index');
-                        });
-                    });
-
-                    describe('with link, data-pjax and no pjax support', function () {
-                        before(function () {
-                            $.support.pjax = false;
-                        });
-
-                        after(function () {
-                            $.support.pjax = true;
-                        });
-
-                        it(pageLoadMessage, function () {
-                            var $element = $('.handle-action .no-method .valid .link-pjax');
-                            assert.lengthOf($element, 1);
-
-                            yii.handleAction($element);
-                            verifyPageLoad('/tests/index');
-                        });
-                    });
-
-                    withData({
-                        'link, data-pjax': ['.link-pjax', 'body'],
-                        'link, data-pjax="1"': ['.link-pjax-1', 'body'],
-                        'link, data-pjax="true"': ['.link-pjax-true', 'body'],
-                        'link, data-pjax, outside a container': [
-                            '.link-pjax-outside-container', '#pjax-separate-container'
-                        ],
-                        'link href, data-pjax, inside a container': ['.link-pjax-inside-container', '#pjax-container-2']
-                    }, function (elementSelector, expectedPjaxContainerId) {
-                        it(pageLoadWithPjaxMessage, function () {
-                            var event = $.Event('click');
-                            var $element = $('.handle-action .no-method .valid').find(elementSelector);
-                            assert.lengthOf($element, 1);
-
-                            yii.handleAction($element, event);
                         });
                     });
                 });
@@ -405,25 +355,6 @@ describe('yii', function () {
                             yii.handleAction($element);
 
                             verifyFormSubmit($form);
-                            assert.equal($savedSubmittedForm.get(0).outerHTML, initialFormHtml);
-                        });
-                    });
-
-                    withData({
-                        'submit, data-form, data-pjax': ['.submit-outside-form-pjax', '#submit-separate-form'],
-                        'submit, inside a form, data-pjax': ['.submit-inside-form-pjax', '#submit-parent-form-pjax']
-                    }, function (elementSelector, formSelector) {
-                        it('should submit according existing form with pjax', function () {
-                            var event = $.Event('click');
-                            var $element = $('.handle-action .no-method .valid').find(elementSelector);
-                            assert.lengthOf($element, 1);
-
-                            var $form = $(formSelector);
-                            var initialFormHtml = $form.get(0).outerHTML;
-                            assert.lengthOf($form, 1);
-
-                            yii.handleAction($element, event);
-
                             assert.equal($savedSubmittedForm.get(0).outerHTML, initialFormHtml);
                         });
                     });
@@ -491,22 +422,6 @@ describe('yii', function () {
                         yii.handleAction($element);
 
                         verifyFormSubmit();
-                        assert.equal($savedSubmittedForm.get(0).outerHTML, expectedFormHtml);
-                    });
-                });
-
-                describe('with data-method="get", data-params, data-pjax', function () {
-                    it('should create temporary form and submit it with pjax', function () {
-                        var event = $.Event('click');
-                        var $element = $('.handle-action .method .no-form .get-params-pjax');
-                        assert.lengthOf($element, 1);
-
-                        yii.handleAction($element, event);
-
-                        var expectedFormHtml = '<form method="get" action="/tests/index" style="display: none;">' +
-                            '<input name="foo" value="1" type="hidden">' +
-                            '<input name="bar" value="2" type="hidden">' +
-                            '</form>';
                         assert.equal($savedSubmittedForm.get(0).outerHTML, expectedFormHtml);
                     });
                 });
@@ -580,31 +495,6 @@ describe('yii', function () {
                         // When activeForm is used for this form, the element triggered the submit should be remembered
                         // in jQuery data under according key
                         assert.strictEqual($form.data('yiiActiveForm').submitObject, $element);
-                    });
-                });
-
-                describe('with data-form, new action, new method, data-params, data-pjax', function () {
-                    var message = 'should modify according existing form, submit it with pjax and restore to ' +
-                        ' initial condition';
-                    it(message, function () {
-                        var event = $.Event('click');
-                        var $element = $('.handle-action .method .form .new-action-new-method-pjax');
-                        assert.lengthOf($element, 1);
-
-                        var $form = $('#method-form');
-                        var initialFormHtml = $form.get(0).outerHTML;
-                        assert.lengthOf($form, 1);
-
-                        yii.handleAction($element, event);
-
-                        var expectedSubmittedFormHtml = '<form id="method-form" method="post" action="/search">' +
-                            '<input name="query" value="a">' +
-                            '<input name="foo" value="1" type="hidden">' +
-                            '<input name="bar" value="2" type="hidden">' +
-                            '</form>';
-                        var submittedFormHtml = StringUtils.cleanHTML($savedSubmittedForm.get(0).outerHTML);
-                        assert.equal(submittedFormHtml, expectedSubmittedFormHtml);
-                        assert.equal($form.get(0).outerHTML, initialFormHtml);
                     });
                 });
             });

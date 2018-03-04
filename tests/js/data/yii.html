@@ -17,8 +17,6 @@
     </div>
 
     <div class="handle-action">
-      <!-- The rest of pjax related attributes are set using JS to prevent copy pasting and for better readability -->
-
       <div class="no-method">
         <div class="invalid">
           <div class="no-form">
@@ -26,17 +24,9 @@
             <a class="link-empty-href" href=""></a>
             <a class="link-anchor-href" href="#"></a>
 
-            <a class="link-no-href-pjax" data-pjax></a>
-            <a class="link-empty-href-pjax" href="" data-pjax></a>
-            <a class="link-anchor-href-pjax" href="#" data-pjax></a>
-
             <input class="not-submit-no-form" type="text">
             <input class="submit-no-form" type="submit">
             <button class="submit-form-not-exist" data-form="not-existing-form"></button>
-
-            <input class="not-submit-no-form-pjax" type="text" data-pjax>
-            <input class="submit-no-form-pjax" type="submit" data-pjax>
-            <button class="submit-form-not-exist-pjax" data-form="not-existing-form" data-pjax></button>
           </div>
 
           <div class="form">
@@ -48,36 +38,11 @@
             <form id="not-submit-parent-form">
               <input class="not-submit-inside-form" type="reset">
             </form>
-
-            <button class="not-submit-outside-form-pjax"
-                    type="button"
-                    data-form="not-submit-separate-form"
-                    data-pjax></button>
-            <form id="not-submit-parent-form-pjax">
-              <input class="not-submit-inside-form-pjax" type="reset" data-pjax>
-            </form>
           </div>
         </div>
 
         <div class="valid">
           <a class="link" href="/tests/index"></a>
-          <a class="link-pjax-0" href="/tests/index" data-pjax="0"></a>
-
-          <a class="link-pjax" href="/tests/index" data-pjax></a>
-          <a class="link-pjax-1" href="/tests/index" data-pjax="1"></a>
-          <a class="link-pjax-true" href="/tests/index" data-pjax="true"></a>
-
-          <div id="pjax-separate-container"></div>
-          <a class="link-pjax-outside-container"
-             href="/tests/index"
-             data-pjax
-             data-pjax-container="#pjax-separate-container"></a>
-
-          <div id="pjax-container-1" data-pjax-container>
-            <div id="pjax-container-2" data-pjax-container>
-              <a class="link-pjax-inside-container" href="/tests/index" data-pjax></a>
-            </div>
-          </div>
 
           <form id="submit-separate-form">
             <input name="query" value="a">
@@ -86,12 +51,6 @@
           <input class="submit-outside-form" type="submit" data-form="submit-separate-form">
           <form id="submit-parent-form">
             <button class="submit-inside-form"></button>
-          </form>
-
-          <input class="submit-outside-form-pjax" type="submit" data-form="submit-separate-form" data-pjax>
-
-          <form id="submit-parent-form-pjax">
-            <button class="submit-inside-form-pjax" data-pjax></button>
           </form>
         </div>
       </div>
@@ -110,12 +69,6 @@
           <a class="post" href="/tests/index" data-method="post" data-params='{"foo":"1","bar":"2"}'></a>
           <a class="post-upper-case" href="/tests/index" data-method="POST" data-params='{"foo":"1","bar":"2"}'></a>
           <a class="put" href="/tests/index" data-method="put" data-params='{"foo":"1","bar":"2"}'></a>
-
-          <a class="get-params-pjax"
-             href="/tests/index"
-             data-method="get"
-             data-params='{"foo":"1","bar":"2"}'
-             data-pjax></a>
         </div>
 
         <div class="form">
@@ -152,13 +105,6 @@
             <input name="method" value="b" type="hidden">
             <input name="action" value="c" type="hidden">
           </form>
-
-          <a class="new-action-new-method-pjax"
-             href="/search"
-             data-method="post"
-             data-form="method-form"
-             data-params='{"foo":"1","bar":"2"}'
-             data-pjax></a>
         </div>
       </div>
     </div>
