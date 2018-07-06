@@ -31,7 +31,7 @@ class RangeValidator extends ClientValidator
             $validator->range = call_user_func($validator->range, $model, $attribute);
         }
         ValidationAsset::register($view);
-        $options = $validator->getClientOptions($model, $attribute);
+        $options = $this->getClientOptions($validator, $model, $attribute);
         return 'yii.validation.range(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
     }
 
