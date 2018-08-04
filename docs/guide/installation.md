@@ -3,16 +3,8 @@ Installation
 
 ## Installing the extension
 
-In order to install extension use Composer. Either run
+In order to install extension use Composer.
 
 ```
-composer require --prefer-dist yiisoft/yii2-jquery "~1.0.0"
+composer require --prefer-dist yiisoft/yii-jquery
 ```
-
-or add
-
-```json
-"yiisoft/yii2-jquery": "~1.0.0"
-```
-
-to the `require` section of your composer.json.
