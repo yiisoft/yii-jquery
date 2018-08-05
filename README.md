@@ -1,8 +1,8 @@
 <p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
+    <a href="https://github.com/yiisoft/yii-jquery" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/70142" height="100px">
     </a>
-    <h1 align="center">JQuery Extension for Yii</h1>
+    <h1 align="center">Yii Framework jQuery Extension</h1>
     <br>
 </p>
 

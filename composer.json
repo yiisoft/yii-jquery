@@ -1,8 +1,9 @@
 {
     "name": "yiisoft/yii-jquery",
-    "description": "JQuery extension for the Yii framework",
+    "description": "Yii Framework jQuery Extension",
     "keywords": ["yii", "jquery", "javascript", "client script"],
     "license": "BSD-3-Clause",
+    "type": "library",
     "support": {
         "issues": "https://github.com/yiisoft/yii-jquery/issues",
         "forum": "http://www.yiiframework.com/forum/",
@@ -30,7 +31,7 @@
         }
     ],
     "require": {
-        "yiisoft/core": "^3.0",
+        "yiisoft/core": "^1.0",
         "npm-asset/jquery": "3.2.*@stable | 3.1.*@stable | 2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable",
         "npm-asset/punycode": "1.3.*"
     },

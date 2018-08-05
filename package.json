@@ -1,6 +1,6 @@
 {
-  "name": "yii2-jquery",
-  "description": "a modern PHP framework designed for professional Web development",
+  "name": "yii-jquery",
+  "description": "Yii Framework jQuery Extension",
   "main": "index.js",
   "directories": {
     "doc": "docs",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yiisoft/yii2-jquery.git"
+    "url": "git+https://github.com/yiisoft/yii-jquery.git"
   },
   "keywords": [
     "php",
@@ -32,7 +32,7 @@
   "author": "",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/yiisoft/yii2-jquery/issues"
+    "url": "https://github.com/yiisoft/yii-jquery/issues"
   },
-  "homepage": "https://github.com/yiisoft/yii2-jquery"
+  "homepage": "https://github.com/yiisoft/yii-jquery"
 }
