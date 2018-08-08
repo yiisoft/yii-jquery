@@ -1,12 +1,18 @@
 <p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="80px">
+    </a>
     <a href="https://github.com/yiisoft/yii-jquery" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/70142" height="100px">
+        <img src="https://avatars0.githubusercontent.com/u/70142" height="80px">
     </a>
     <h1 align="center">Yii Framework jQuery Extension</h1>
     <br>
 </p>
 
-This extension provides the JQuery for the [Yii framework](http://www.yiiframework.com).
+This extension provides the [jQuery] for the [Yii framework].
+
+[jQuery]:           https://jquery.com/
+[Yii Framework]:    https://www.yiiframework.com/
 
 For license information check the [LICENSE](LICENSE.md)-file.
 
