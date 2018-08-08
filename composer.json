@@ -1,15 +1,15 @@
 {
     "name": "yiisoft/yii-jquery",
+    "type": "library",
     "description": "Yii Framework jQuery Extension",
     "keywords": ["yii", "jquery", "javascript", "client script"],
     "license": "BSD-3-Clause",
-    "type": "library",
     "support": {
+        "source": "https://github.com/yiisoft/yii-jquery",
         "issues": "https://github.com/yiisoft/yii-jquery/issues",
         "forum": "http://www.yiiframework.com/forum/",
         "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii-jquery"
+        "irc": "irc://irc.freenode.net/yii"
     },
     "authors": [
         {
@@ -37,9 +37,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7.3",
-        "yiisoft/di": "dev-master",
-        "yiisoft/log": "dev-master",
-        "yiisoft/cache": "dev-master"
+        "yiisoft/di": "^3.0@dev",
+        "yiisoft/log": "^3.0@dev",
+        "yiisoft/cache": "^3.0@dev"
     },
     "repositories": [
         {
@@ -55,7 +55,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     }
 }
