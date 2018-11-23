@@ -1,0 +1,6 @@
+{
+    "require": {
+        "npm-asset/jquery": "3.2.*@stable | 3.1.*@stable | 2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable",
+        "npm-asset/punycode": "1.3.*"
+    }
+}
