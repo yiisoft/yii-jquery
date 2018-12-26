@@ -10,7 +10,7 @@ use yii\di\Container;
 use yii\helpers\Yii;
 
 // ensure we get report on all possible php errors
-error_reporting(E_ALL);
+error_reporting(-1);
 
 define('YII_ENABLE_ERROR_HANDLER', false);
 define('YII_DEBUG', true);
