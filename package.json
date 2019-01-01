@@ -14,8 +14,9 @@
     "jsdom": "^9.8.3",
     "leche": "^2.1.2",
     "mocha": "^3.1.2",
-    "mocha-jsdom": "^1.1.0",
-    "sinon": "^1.17.6"
+    "mocha-jsdom": "~1.1.0",
+    "sinon": "^1.17.6",
+    "punycode": "1.3.*"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha tests/js/tests/*.test.js --timeout 0"
