@@ -9,9 +9,10 @@ namespace yii\jquery;
 
 use Yii;
 use yii\base\Behavior;
-use yii\base\Widget;
+use yii\widgets\Widget;
 use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\widgets\RunEvent;
 
 /**
  * GridViewClientScript is a behavior for [[\yii\grid\GridView]] widget, which allows automatic filter submission via jQuery component.
@@ -56,7 +57,7 @@ class GridViewClientScript extends Behavior
     public function events()
     {
         return [
-            Widget::EVENT_BEFORE_RUN => 'beforeRun'
+            RunEvent::BEFORE => 'beforeRun',
         ];
     }
 

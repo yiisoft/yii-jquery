@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\jquery\data;
+namespace yii\jquery\tests\data;
 
 use yii\base\Model;
 

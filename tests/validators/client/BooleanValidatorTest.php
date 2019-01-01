@@ -5,18 +5,25 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\jquery\validators;
+namespace yii\jquery\tests\validators;
 
 use yii\jquery\validators\client\BooleanValidator;
 use yii\web\View;
-use yiiunit\jquery\data\FakedValidationModel;
-use yiiunit\jquery\TestCase;
+use yii\jquery\tests\data\FakedValidationModel;
+use yii\jquery\tests\TestCase;
+use yii\view\Theme;
 
 /**
  * @group validators
  */
 class BooleanValidatorTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->mockWebApplication();
+    }
+
     public function testBuild()
     {
         $validator = new \yii\validators\BooleanValidator([
@@ -35,7 +42,7 @@ class BooleanValidatorTest extends TestCase
 
         $this->assertEquals(
             'yii.validation.boolean(value, messages, {"trueValue":true,"falseValue":false,"message":"attrB must be either \"true\" or \"false\".","skipOnEmpty":1,"strict":1});',
-            $clientValidator->build($validator, $model, 'attrB', new ViewStub())
+            $clientValidator->build($validator, $model, 'attrB', new ViewStub($this->app, new Theme()))
         );
     }
 }

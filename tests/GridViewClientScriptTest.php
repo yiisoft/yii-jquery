@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\jquery;
+namespace yii\jquery\tests;
 
 use Yii;
 use yii\data\ArrayDataProvider;
-use yii\grid\GridView;
+use yii\dataview\GridView;
 use yii\jquery\GridViewAsset;
 use yii\jquery\GridViewClientScript;
 use yii\web\View;
@@ -29,17 +29,15 @@ class GridViewClientScriptTest extends TestCase
         $_SERVER['SCRIPT_FILENAME'] = "index.php";
         $_SERVER['SCRIPT_NAME'] = "index.php";
 
-        $this->mockWebApplication([
-            'components' => [
-                'assetManager' => [
-                    'bundles' => [
-                        GridViewAsset::class => [
-                            'sourcePath' => null,
-                            'basePath' => null,
-                            'baseUrl' => 'http://example.com/assets',
-                            'depends' => [],
-                        ],
-                    ],
+        $this->mockWebApplication();
+        $this->container->set('assetManager', [
+            '__class' => \yii\web\AssetManager::class,
+            'bundles' => [
+                GridViewAsset::class => [
+                    'sourcePath' => null,
+                    'basePath' => null,
+                    'baseUrl' => 'http://example.com/assets',
+                    'depends' => [],
                 ],
             ],
         ]);
@@ -49,24 +47,23 @@ class GridViewClientScriptTest extends TestCase
     {
         $row = ['id' => 1, 'name' => 'Name1', 'value' => 'Value1', 'description' => 'Description1',];
 
+        $dp = new ArrayDataProvider();
+        $dp->allModels = [
+            $row,
+        ];
+
         GridView::widget([
             'id' => 'test-grid',
-            'dataProvider' => new ArrayDataProvider(
-                [
-                    'allModels' => [
-                        $row,
-                    ],
-                ]
-            ),
+            'dataProvider' => $dp,
             'filterUrl' => 'http://example.com/filter',
             'as clientScript' => [
                 '__class' => GridViewClientScript::class
             ],
         ]);
 
-        $this->assertTrue(Yii::$app->assetManager->bundles[GridViewAsset::class] instanceof GridViewAsset);
-        $this->assertNotEmpty(Yii::$app->view->js[View::POS_END]);
-        $js = reset(Yii::$app->view->js[View::POS_END]);
+        $this->assertTrue($this->app->assetManager->bundles[GridViewAsset::class] instanceof GridViewAsset);
+        $this->assertNotEmpty($this->app->view->js[View::POS_END]);
+        $js = end($this->app->view->js[View::POS_END]);
         $this->assertContains("jQuery('#test-grid').yiiGridView(", $js);
     }
 }

@@ -41,6 +41,7 @@
         "hiqdev/composer-config-plugin": "^1.0@dev",
         "yiisoft/di": "^3.0@dev",
         "yiisoft/log": "^3.0@dev",
+        "yiisoft/yii-dataview": "^3.0@dev",
         "yiisoft/cache": "^3.0@dev",
         "yiisoft/yii-web": "^3.0@dev"
     },
@@ -54,11 +55,14 @@
         "psr-4": { "yii\\jquery\\": "src" }
     },
     "autoload-dev": {
-        "psr-4": {"yiiunit\\jquery\\": "tests"}
+        "psr-4": {"yii\\jquery\\tests\\": "tests"}
     },
     "extra": {
         "branch-alias": {
             "dev-master": "3.0.x-dev"
+        },
+        "config-plugin": {
+            "tests": "config/tests.php"
         }
     }
 }

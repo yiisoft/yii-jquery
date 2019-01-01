@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\jquery;
+namespace yii\jquery\tests;
 
 use Yii;
 use yii\base\DynamicModel;
@@ -48,17 +48,15 @@ class ActiveFormClientScriptTest extends TestCase
         $_SERVER['SCRIPT_FILENAME'] = "index.php";
         $_SERVER['SCRIPT_NAME'] = "index.php";
 
-        $this->mockWebApplication([
-            'components' => [
-                'assetManager' => [
-                    'bundles' => [
-                        ActiveFormAsset::class => [
-                            'sourcePath' => null,
-                            'basePath' => null,
-                            'baseUrl' => 'http://example.com/assets',
-                            'depends' => [],
-                        ],
-                    ],
+        $this->mockWebApplication();
+        $this->container->set('assetManager', [
+            '__class' => \yii\web\AssetManager::class,
+            'bundles' => [
+                ActiveFormAsset::class => [
+                    'sourcePath' => null,
+                    'basePath' => null,
+                    'baseUrl' => 'http://example.com/assets',
+                    'depends' => [],
                 ],
             ],
         ]);

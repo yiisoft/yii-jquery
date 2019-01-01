@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yiiunit\jquery;
+namespace yii\jquery\tests;
 
 use yii\di\Container;
 use yii\helpers\ArrayHelper;
@@ -14,75 +14,8 @@ use Yii;
 /**
  * This is the base class for unit tests.
  */
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends \yii\tests\TestCase
 {
-    /**
-     * Clean up after test.
-     * By default the application created with [[mockApplication]] will be destroyed.
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-        $this->destroyApplication();
-    }
-
-    /**
-     * Populates Yii::$app with a new application
-     * The application will be destroyed on tearDown() automatically.
-     * @param array $config The application configuration, if needed
-     * @param string $appClass name of the application class to create
-     */
-    protected function mockApplication($config = [], $appClass = \yii\console\Application::class)
-    {
-        new $appClass(ArrayHelper::merge([
-            'id' => 'testapp',
-            'basePath' => __DIR__,
-            'vendorPath' => dirname(__DIR__) . '/vendor',
-            'aliases' => [
-                '@webroot' => '@yiiunit/jquery/data/web',
-                '@web' => '/',
-            ],
-        ], $config));
-
-        Yii::setAlias('@webroot', '@yiiunit/jquery/data/web');
-        Yii::setAlias('@web', '/');
-    }
-
-    protected function mockWebApplication($config = [], $appClass = \yii\web\Application::class)
-    {
-        $this->mockApplication(ArrayHelper::merge([
-            'components' => [
-                'request' => [
-                    'cookieValidationKey' => 'wefJDF8sfdsfSDefwqdxj9oq',
-                    'scriptFile' => __DIR__ .'/index.php',
-                    'scriptUrl' => '/index.php',
-                ],
-            ]
-        ], $config), $appClass);
-    }
-
-    /**
-     * Destroys application in Yii::$app by setting it to null.
-     */
-    protected function destroyApplication()
-    {
-        Yii::$app = null;
-        Yii::$container = new Container();
-    }
-
-    /**
-     * Asserting two strings equality ignoring line endings
-     *
-     * @param string $expected
-     * @param string $actual
-     */
-    public function assertEqualsWithoutLE($expected, $actual)
-    {
-        $expected = str_replace(["\r", "\n"], '', $expected);
-        $actual = str_replace(["\r", "\n"], '', $actual);
-        $this->assertEquals($expected, $actual);
-    }
-
     /**
      * Invokes object method, even if it is private or protected.
      * @param object $object object.
