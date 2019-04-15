@@ -126,7 +126,6 @@ class ActiveFormClientScriptTest extends TestCase
         // expected empty
         $actualValue = $this->getActiveFieldClientOptions();
         $this->assertEmpty($actualValue);
-
     }
 
     public function testGetClientOptionsClientValidation()
@@ -163,7 +162,7 @@ class ActiveFormClientScriptTest extends TestCase
         $this->activeField->enableAjaxValidation = true;
         $this->activeField->model->addRule($this->attributeName, TestValidator::class);
 
-        foreach($this->activeField->model->validators as $validator) {
+        foreach ($this->activeField->model->validators as $validator) {
             $validator->whenClient = "function (attribute, value) { return 'yii2' == 'yii2'; }"; // js
         }
 
