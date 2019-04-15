@@ -73,7 +73,7 @@ script:
   # PHP tests
   - |
     if [ $TASK_TESTS_PHP == 1 ]; then
-      phpunit $PHPUNIT_FLAGS
+      ./vendor/bin/phpunit $PHPUNIT_FLAGS
     fi
 
   # JS tests
