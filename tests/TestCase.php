@@ -8,7 +8,6 @@
 namespace yii\jquery\tests;
 
 use yii\di\Container;
-use yii\helpers\ArrayHelper;
 use Yii;
 
 /**
