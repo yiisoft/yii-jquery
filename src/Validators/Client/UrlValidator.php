@@ -5,54 +5,66 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\validators\client;
+namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\jquery\ValidationAsset;
+use yii\helpers\Json;
+use Yiisoft\Yii\JQuery\PunycodeAsset;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
+use yii\web\JsExpression;
 
 /**
- * CaptchaClientValidator composes client-side validation code from [[CaptchaValidator]].
+ * UrlValidator composes client-side validation code from [[\yii\validators\UrlValidator]].
  *
- * @see CaptchaValidator
+ * @see \yii\validators\UrlValidator
  * @see ValidationAsset
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 1.0
  */
-class CaptchaClientValidator extends ClientValidator
+class UrlValidator extends ClientValidator
 {
     /**
      * {@inheritdoc}
      */
     public function build($validator, $model, $attribute, $view)
     {
+        /* @var $validator \yii\validators\UrlValidator */
         ValidationAsset::register($view);
+        if ($validator->enableIDN) {
+            PunycodeAsset::register($view);
+        }
         $options = $this->getClientOptions($validator, $model, $attribute);
-        return 'yii.validation.captcha(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
+        return 'yii.validation.url(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 
     /**
      * Returns the client-side validation options.
-     * @param \Yiisoft\Yii\Captcha\CaptchaValidator $validator the server-side validator.
+     * @param \yii\validators\UrlValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
     {
-        $captcha = $validator->createCaptchaAction();
-        $code = $captcha->getVerifyCode(false);
-        $hash = $captcha->generateValidationHash($validator->caseSensitive ? $code : strtolower($code));
+        if (strpos($validator->pattern, '{schemes}') !== false) {
+            $pattern = str_replace('{schemes}', '(' . implode('|', $validator->validSchemes) . ')', $validator->pattern);
+        } else {
+            $pattern = $validator->pattern;
+        }
+
         $options = [
-            'hash' => $hash,
-            'hashKey' => 'yiiCaptcha/' . $captcha->getUniqueId(),
-            'caseSensitive' => $validator->caseSensitive,
+            'pattern' => new JsExpression($pattern),
             'message' => $validator->formatMessage($validator->message, [
                 'attribute' => $model->getAttributeLabel($attribute),
             ]),
+            'enableIDN' => (bool) $validator->enableIDN,
         ];
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
+        }
+        if ($validator->defaultScheme !== null) {
+            $options['defaultScheme'] = $validator->defaultScheme;
         }
 
         return $options;

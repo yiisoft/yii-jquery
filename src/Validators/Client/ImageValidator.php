@@ -5,9 +5,9 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\validators\client;
+namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\jquery\ValidationAsset;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 
 /**
  * ImageValidator composes client-side validation code from [[\yii\validators\ImageValidator]].

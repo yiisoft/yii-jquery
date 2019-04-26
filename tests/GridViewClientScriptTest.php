@@ -5,13 +5,13 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\tests;
+namespace Yiisoft\Yii\JQuery\Tests;
 
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\dataview\GridView;
-use yii\jquery\GridViewAsset;
-use yii\jquery\GridViewClientScript;
+use Yiisoft\Yii\JQuery\GridViewAsset;
+use Yiisoft\Yii\JQuery\GridViewClientScript;
 use yii\web\View;
 
 /**

@@ -5,61 +5,59 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\validators\client;
+namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\jquery\ValidationAsset;
+use yii\helpers\Json;
+use Yiisoft\Yii\JQuery\PunycodeAsset;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
+use yii\web\JsExpression;
 
 /**
- * RangeValidator composes client-side validation code from [[\yii\validators\RangeValidator]].
+ * EmailValidator composes client-side validation code from [[\yii\validators\EmailValidator]].
  *
- * @see \yii\validators\RangeValidator
+ * @see \yii\validators\EmailValidator
  * @see ValidationAsset
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 1.0
  */
-class RangeValidator extends ClientValidator
+class EmailValidator extends ClientValidator
 {
     /**
      * {@inheritdoc}
      */
     public function build($validator, $model, $attribute, $view)
     {
-        /* @var $validator \yii\validators\RangeValidator */
-        if ($validator->range instanceof \Closure) {
-            $validator->range = call_user_func($validator->range, $model, $attribute);
-        }
+        /* @var $validator \yii\validators\EmailValidator */
         ValidationAsset::register($view);
+        if ($validator->enableIDN) {
+            PunycodeAsset::register($view);
+        }
         $options = $this->getClientOptions($validator, $model, $attribute);
-        return 'yii.validation.range(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
+        return 'yii.validation.email(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 
     /**
      * Returns the client-side validation options.
-     * @param \yii\validators\RangeValidator $validator the server-side validator.
+     * @param \yii\validators\EmailValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
     {
-        $range = [];
-        foreach ($validator->range as $value) {
-            $range[] = (string) $value;
-        }
         $options = [
-            'range' => $range,
-            'not' => $validator->not,
+            'pattern' => new JsExpression($validator->pattern),
+            'fullPattern' => new JsExpression($validator->fullPattern),
+            'allowName' => $validator->allowName,
             'message' => $validator->formatMessage($validator->message, [
                 'attribute' => $model->getAttributeLabel($attribute),
             ]),
+            'enableIDN' => (bool)$validator->enableIDN,
         ];
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
-        }
-        if ($validator->allowArray) {
-            $options['allowArray'] = 1;
         }
 
         return $options;

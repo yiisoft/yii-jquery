@@ -52,10 +52,10 @@
         }
     ],
     "autoload": {
-        "psr-4": { "yii\\jquery\\": "src" }
+        "psr-4": { "Yiisoft\\Yii\\JQuery\\": "src" }
     },
     "autoload-dev": {
-        "psr-4": {"yii\\jquery\\tests\\": "tests"}
+        "psr-4": {"Yiisoft\\Yii\\JQuery\\Tests\\": "tests"}
     },
     "extra": {
         "branch-alias": {

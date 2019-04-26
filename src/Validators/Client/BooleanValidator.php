@@ -5,66 +5,55 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\validators\client;
+namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\helpers\Json;
-use yii\jquery\PunycodeAsset;
-use yii\jquery\ValidationAsset;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
-use yii\web\JsExpression;
 
 /**
- * UrlValidator composes client-side validation code from [[\yii\validators\UrlValidator]].
+ * BooleanValidator composes client-side validation code from [[\yii\validators\BooleanValidator]].
  *
- * @see \yii\validators\UrlValidator
+ * @see \yii\validators\BooleanValidator
  * @see ValidationAsset
  *
  * @author Paul Klimov <klimov.paul@gmail.com>
  * @since 1.0
  */
-class UrlValidator extends ClientValidator
+class BooleanValidator extends ClientValidator
 {
     /**
      * {@inheritdoc}
      */
     public function build($validator, $model, $attribute, $view)
     {
-        /* @var $validator \yii\validators\UrlValidator */
         ValidationAsset::register($view);
-        if ($validator->enableIDN) {
-            PunycodeAsset::register($view);
-        }
         $options = $this->getClientOptions($validator, $model, $attribute);
-        return 'yii.validation.url(value, messages, ' . Json::htmlEncode($options) . ');';
+        return 'yii.validation.boolean(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
     }
 
     /**
      * Returns the client-side validation options.
-     * @param \yii\validators\UrlValidator $validator the server-side validator.
+     * @param \yii\validators\BooleanValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
     {
-        if (strpos($validator->pattern, '{schemes}') !== false) {
-            $pattern = str_replace('{schemes}', '(' . implode('|', $validator->validSchemes) . ')', $validator->pattern);
-        } else {
-            $pattern = $validator->pattern;
-        }
-
         $options = [
-            'pattern' => new JsExpression($pattern),
+            'trueValue' => $validator->trueValue,
+            'falseValue' => $validator->falseValue,
             'message' => $validator->formatMessage($validator->message, [
                 'attribute' => $model->getAttributeLabel($attribute),
+                'true' => $validator->trueValue === true ? 'true' : $validator->trueValue,
+                'false' => $validator->falseValue === false ? 'false' : $validator->falseValue,
             ]),
-            'enableIDN' => (bool) $validator->enableIDN,
         ];
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
         }
-        if ($validator->defaultScheme !== null) {
-            $options['defaultScheme'] = $validator->defaultScheme;
+        if ($validator->strict) {
+            $options['strict'] = 1;
         }
 
         return $options;

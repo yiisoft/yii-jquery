@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\tests;
+namespace Yiisoft\Yii\JQuery\Tests;
 
 use yii\di\Container;
 use Yii;

@@ -5,12 +5,12 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\tests\validators;
+namespace Yiisoft\Yii\JQuery\Tests\Validators;
 
-use yii\jquery\validators\client\NumberValidator;
+use Yiisoft\Yii\JQuery\Validators\Client\NumberValidator;
 use yii\web\View;
-use yii\jquery\tests\data\FakedValidationModel;
-use yii\jquery\tests\TestCase;
+use Yiisoft\Yii\JQuery\Tests\Data\FakedValidationModel;
+use Yiisoft\Yii\JQuery\Tests\TestCase;
 use yii\view\Theme;
 
 /**
@@ -29,7 +29,7 @@ class NumberValidatorTest extends TestCase
     public function testBuild()
     {
         $view = new View($this->app, new Theme());
-        $view->assetBundles = [\yii\jquery\ValidationAsset::class => true];
+        $view->assetBundles = [\Yiisoft\Yii\JQuery\ValidationAsset::class => true];
         $clientValidator = new NumberValidator();
         $model = new FakedValidationModel();
 

@@ -106,14 +106,14 @@ return [
         'assetManager' => [
             // override bundles to use CDN :
             'bundles' => [
-                yii\jquery\JqueryAsset::class => [
+                Yiisoft\Yii\JQuery\JqueryAsset::class => [
                     'sourcePath' => null,
                     'baseUrl' => 'https://code.jquery.com',
                     'js' => [
                         'jquery-3.3.1.min.js'
                     ],
                 ],
-                yii\jquery\PunycodeAsset::class => [
+                Yiisoft\Yii\JQuery\PunycodeAsset::class => [
                     'sourcePath' => null,
                     'baseUrl' => 'https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1',
                     'js' => [

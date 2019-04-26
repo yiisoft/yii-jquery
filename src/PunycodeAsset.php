@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery;
+namespace Yiisoft\Yii\JQuery;
 
 use yii\web\AssetBundle;
 
