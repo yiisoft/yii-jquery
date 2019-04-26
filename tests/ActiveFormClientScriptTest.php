@@ -5,12 +5,12 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\tests;
+namespace Yiisoft\Yii\JQuery\Tests;
 
 use Yii;
 use yii\base\DynamicModel;
-use yii\jquery\ActiveFormAsset;
-use yii\jquery\ActiveFormClientScript;
+use Yiisoft\Yii\JQuery\ActiveFormAsset;
+use Yiisoft\Yii\JQuery\ActiveFormClientScript;
 use yii\web\View;
 use yii\widgets\ActiveField;
 use yii\widgets\ActiveForm;

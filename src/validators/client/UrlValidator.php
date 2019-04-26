@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\validators\client;
+namespace Yiisoft\Yii\JQuery\Validators\Client;
 
 use yii\helpers\Json;
-use yii\jquery\PunycodeAsset;
-use yii\jquery\ValidationAsset;
+use Yiisoft\Yii\JQuery\PunycodeAsset;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 use yii\web\JsExpression;
 

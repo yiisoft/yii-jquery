@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery;
+namespace Yiisoft\Yii\JQuery;
 
 use Yii;
 use yii\helpers\Json;
@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
  * ```php
  * <?php $form = \yii\widgets\ActiveForm::begin([
  *     'id' => 'example-form',
- *     'as clientScript' => \yii\jquery\ActiveFormClientScript::class,
+ *     'as clientScript' => \Yiisoft\Yii\JQuery\ActiveFormClientScript::class,
  *     // ...
  * ]); ?>
  * ...
@@ -41,20 +41,20 @@ class ActiveFormClientScript extends \yii\widgets\ActiveFormClientScript
     protected function defaultClientValidatorMap()
     {
         return [
-            \yii\validators\BooleanValidator::class => \yii\jquery\validators\client\BooleanValidator::class,
-            \yii\validators\CompareValidator::class => \yii\jquery\validators\client\CompareValidator::class,
-            \yii\validators\EmailValidator::class => \yii\jquery\validators\client\EmailValidator::class,
-            \yii\validators\FilterValidator::class => \yii\jquery\validators\client\FilterValidator::class,
-            \yii\validators\IpValidator::class => \yii\jquery\validators\client\IpValidator::class,
-            \yii\validators\NumberValidator::class => \yii\jquery\validators\client\NumberValidator::class,
-            \yii\validators\RangeValidator::class => \yii\jquery\validators\client\RangeValidator::class,
-            \yii\validators\RegularExpressionValidator::class => \yii\jquery\validators\client\RegularExpressionValidator::class,
-            \yii\validators\RequiredValidator::class => \yii\jquery\validators\client\RequiredValidator::class,
-            \yii\validators\StringValidator::class => \yii\jquery\validators\client\StringValidator::class,
-            \yii\validators\UrlValidator::class => \yii\jquery\validators\client\UrlValidator::class,
-            \yii\validators\ImageValidator::class => \yii\jquery\validators\client\ImageValidator::class,
-            \yii\validators\FileValidator::class => \yii\jquery\validators\client\FileValidator::class,
-            \Yiisoft\Yii\Captcha\CaptchaValidator::class => \yii\jquery\validators\client\CaptchaClientValidator::class,
+            \yii\validators\BooleanValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\BooleanValidator::class,
+            \yii\validators\CompareValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\CompareValidator::class,
+            \yii\validators\EmailValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\EmailValidator::class,
+            \yii\validators\FilterValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\FilterValidator::class,
+            \yii\validators\IpValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\IpValidator::class,
+            \yii\validators\NumberValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\NumberValidator::class,
+            \yii\validators\RangeValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\RangeValidator::class,
+            \yii\validators\RegularExpressionValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\RegularExpressionValidator::class,
+            \yii\validators\RequiredValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\RequiredValidator::class,
+            \yii\validators\StringValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\StringValidator::class,
+            \yii\validators\UrlValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\UrlValidator::class,
+            \yii\validators\ImageValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\ImageValidator::class,
+            \yii\validators\FileValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\FileValidator::class,
+            \Yiisoft\Yii\Captcha\CaptchaValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\CaptchaClientValidator::class,
         ];
     }
 

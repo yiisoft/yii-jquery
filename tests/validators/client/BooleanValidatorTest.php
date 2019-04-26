@@ -5,12 +5,12 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery\tests\validators;
+namespace Yiisoft\Yii\JQuery\Tests\Validators;
 
-use yii\jquery\validators\client\BooleanValidator;
+use Yiisoft\Yii\JQuery\Validators\Client\BooleanValidator;
 use yii\web\View;
-use yii\jquery\tests\data\FakedValidationModel;
-use yii\jquery\tests\TestCase;
+use Yiisoft\Yii\JQuery\Tests\Data\FakedValidationModel;
+use Yiisoft\Yii\JQuery\Tests\TestCase;
 use yii\view\Theme;
 
 /**

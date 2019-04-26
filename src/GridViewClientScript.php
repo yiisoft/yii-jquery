@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace yii\jquery;
+namespace Yiisoft\Yii\JQuery;
 
 use Yii;
 use yii\base\Behavior;
@@ -23,7 +23,7 @@ use yii\widgets\RunEvent;
  * <?= yii\grid\GridView::widget([
  *     'dataProvider' => $dataProvider,
  *     'as clientScript' => [
- *         '__class' => yii\jquery\GridViewClientScript::class
+ *         '__class' => Yiisoft\Yii\JQuery\GridViewClientScript::class
  *     ],
  *     'columns' => [
  *         'id',
