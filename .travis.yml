@@ -20,18 +20,15 @@ env:
 matrix:
   fast_finish: true
   include:
-    - php: 7.3
     - php: 7.2
-
-    # run tests coverage on PHP 7.1
-    - php: 7.1
+    - php: 7.3
       env: TASK_TESTS_COVERAGE=1
     - php: nightly
 
     # have a separate branch for javascript tests
     - language: node_js
       node_js: 6
-      php: 7.1
+      php: 7.3
       env: TASK_TESTS_PHP=0 TASK_TESTS_JS=1
       # overwrite services used for PHP tests
       services:
@@ -60,7 +57,7 @@ install:
 
 before_script:
   - |
-    if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
+    if [ $TRAVIS_PHP_VERSION = '7.3' ]; then
       PHPUNIT_FLAGS="--coverage-clover=coverage.clover"
     fi
   - |
