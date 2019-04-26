@@ -54,7 +54,7 @@ class ActiveFormClientScript extends \yii\widgets\ActiveFormClientScript
             \yii\validators\UrlValidator::class => \yii\jquery\validators\client\UrlValidator::class,
             \yii\validators\ImageValidator::class => \yii\jquery\validators\client\ImageValidator::class,
             \yii\validators\FileValidator::class => \yii\jquery\validators\client\FileValidator::class,
-            \yii\captcha\CaptchaValidator::class => \yii\jquery\validators\client\CaptchaClientValidator::class,
+            \Yiisoft\Yii\Captcha\CaptchaValidator::class => \yii\jquery\validators\client\CaptchaClientValidator::class,
         ];
     }
 

@@ -33,7 +33,7 @@ class CaptchaClientValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
-     * @param \yii\captcha\CaptchaValidator $validator the server-side validator.
+     * @param \Yiisoft\Yii\Captcha\CaptchaValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
      * @return array the client-side validation options
