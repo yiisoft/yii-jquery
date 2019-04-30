@@ -9,7 +9,7 @@ namespace Yiisoft\Yii\JQuery\Tests;
 
 use Yii;
 use yii\data\ArrayDataProvider;
-use yii\dataview\GridView;
+use Yiisoft\Yii\DataView\GridView;
 use Yiisoft\Yii\JQuery\GridViewAsset;
 use Yiisoft\Yii\JQuery\GridViewClientScript;
 use yii\web\View;
