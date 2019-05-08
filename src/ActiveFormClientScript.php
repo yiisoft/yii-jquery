@@ -7,7 +7,6 @@
 
 namespace Yiisoft\Yii\JQuery;
 
-use Yii;
 use yii\helpers\Json;
 use yii\widgets\ActiveForm;
 

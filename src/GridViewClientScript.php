@@ -7,7 +7,7 @@
 
 namespace Yiisoft\Yii\JQuery;
 
-use Yii;
+use yii\helpers\Yii;
 use yii\base\Behavior;
 use yii\widgets\Widget;
 use yii\helpers\Json;
@@ -80,7 +80,7 @@ class GridViewClientScript extends Behavior
      */
     protected function getClientOptions()
     {
-        $filterUrl = isset($this->owner->filterUrl) ? $this->owner->filterUrl : Yii::$app->request->url;
+        $filterUrl = isset($this->owner->filterUrl) ? $this->owner->filterUrl : Yii::getApp()->request->url;
         $id = $this->owner->filterRowOptions['id'];
         $filterSelector = "#$id input, #$id select";
         if (isset($this->filterSelector)) {
