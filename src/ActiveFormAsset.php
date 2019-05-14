@@ -20,7 +20,7 @@ class ActiveFormAsset extends AssetBundle
     /**
      * {@inheritdoc}
      */
-    public $sourcePath = '@yii/jquery/assets';
+    public $sourcePath = __DIR__ . '/assets';
     /**
      * {@inheritdoc}
      */
