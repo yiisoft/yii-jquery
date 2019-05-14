@@ -20,7 +20,7 @@ class YiiAsset extends AssetBundle
     /**
      * {@inheritdoc}
      */
-    public $sourcePath = '@Yiisoft/Yii/JQuery/assets';
+    public $sourcePath = __DIR__ . '/assets';
     /**
      * {@inheritdoc}
      */
