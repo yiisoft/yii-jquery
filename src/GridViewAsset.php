@@ -1,19 +1,14 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types = 1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use yii\web\AssetBundle;
+use Yiisoft\Asset\AssetBundle;
 
 /**
- * This asset bundle provides the javascript files for the [[GridView]] widget.
+ * This asset bundle provides the javascript files for the {@see GridView} widget.
  *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 1.0
+ * GridViewAsset.
  */
 class GridViewAsset extends AssetBundle
 {
@@ -21,10 +16,12 @@ class GridViewAsset extends AssetBundle
      * {@inheritdoc}
      */
     public $sourcePath = __DIR__ . '/assets';
+
     /**
      * {@inheritdoc}
      */
     public $js = ['yii.gridView.js'];
+
     /**
      * {@inheritdoc}
      */

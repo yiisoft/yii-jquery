@@ -1,25 +1,27 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types = 1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use yii\web\AssetBundle;
+use Yiisoft\Asset\AssetBundle;
 
 /**
- * This asset bundle provides the javascript files needed for the [[EmailValidator]]s client validation.
+ * This asset bundle provides the javascript files needed for the {@see EmailValidator} client validation.
  *
  * @see https://github.com/bestiejs/punycode.js/
  *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 1.0
+ * PunycodeAsset.
  */
 class PunycodeAsset extends AssetBundle
 {
+    /**
+     * {@inheritdoc}
+     */
     public $sourcePath = '@npm/punycode';
+
+    /**
+     * {@inheritdoc}
+     */
     public $js = [
         'punycode.js',
     ];
