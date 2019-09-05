@@ -1,19 +1,14 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types = 1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use yii\web\AssetBundle;
+use Yiisoft\Asset\AssetBundle;
 
 /**
  * This asset bundle provides the base JavaScript files for the Yii Framework.
  *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 1.0
+ * YiiAsset.
  */
 class YiiAsset extends AssetBundle
 {
@@ -21,10 +16,12 @@ class YiiAsset extends AssetBundle
      * {@inheritdoc}
      */
     public $sourcePath = __DIR__ . '/assets';
+
     /**
      * {@inheritdoc}
      */
     public $js = ['yii.js'];
+
     /**
      * {@inheritdoc}
      */
