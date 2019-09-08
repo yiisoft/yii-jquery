@@ -33,7 +33,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "yiisoft/yii-core": "^3.0@dev"
+
     },
     "require-dev": {
         "foxy/foxy": "^1.0",
