@@ -2,7 +2,12 @@
     "name": "yiisoft/yii-jquery",
     "type": "library",
     "description": "Yii Framework jQuery Extension",
-    "keywords": ["yii", "jquery", "javascript", "client script"],
+    "keywords": [
+        "yii",
+        "jquery",
+        "javascript",
+        "client script"
+    ],
     "license": "BSD-3-Clause",
     "support": {
         "source": "https://github.com/yiisoft/yii-jquery",
@@ -32,9 +37,7 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {
-
-    },
+    "require": [],
     "require-dev": {
         "foxy/foxy": "^1.0",
         "phpunit/phpunit": "^7.3",
@@ -52,10 +55,14 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Yiisoft\\Yii\\JQuery\\": "src" }
+        "psr-4": {
+            "Yiisoft\\Yii\\JQuery\\": "src"
+        }
     },
     "autoload-dev": {
-        "psr-4": {"Yiisoft\\Yii\\JQuery\\Tests\\": "tests"}
+        "psr-4": {
+            "Yiisoft\\Yii\\JQuery\\Tests\\": "tests"
+        }
     },
     "extra": {
         "branch-alias": {
@@ -64,5 +71,8 @@
         "config-plugin": {
             "tests": "config/tests.php"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
