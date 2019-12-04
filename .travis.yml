@@ -78,3 +78,20 @@ script:
     if [ $TASK_TESTS_JS == 1 ]; then
       npm test
     fi
+
+notifications:
+  slack:
+    -
+      rooms:
+        -
+          secure: CNywC3GtfH1KtppOhBGhprJXEToL+STv2cfiwl3kLCx0ui14KCZJ1pi9zfO2oHtzVA19wYfMVdeZk7QPJMkcKn13mnjF1lqWnfWjE/OqVUJbp1EEM8Zmx5vVejz17OfNoml1oIXO/G+ncGitZk7arm9kz2lAezL0puow4QPtKC9zYjrQHRzZEi0oyDPSOqbAVoXpyFuvMAXzTcWvGkKJt6/mw2ober1mjTMTv+qZ99uqSwb5sxAVIc64t7u4pAQNBQ741EoVlZyndhIqxtIAVSsyZTjhUaDN/oI1aB2O+S2MAtZ/g2DCFqbKoFy423rn6cgGAOiG842+DCsHu4qK3PefxiFgVwGCCAtHvlfgNWsaoxQHyPQAivC9K59Ll76vfFIpC5NkgiyCA5pkcrZ1E++c6tlw8CBP+RDKjFxiFeV/0wkwBiadF4h2tRrSK01xfJu36fLh4fppLXOc9UNZyZ9Lcu/0zc0l1Tr+An9SEh5LPfRe1lTasYQl2z7rHLi+4kRSmDi6TuN7hi7B/BMMWjMuDPXHKhkyQGjbbDlJkKMaeIBRXaPM75EBmMa22XBOpYiLBm4MWjTlEv+Pk1G/Q+X3trCduW61IrK1+ytk79c+4Ata7qY0BgfGlXYLmzB3Jgxub5XXC//6tYFnA6MRGoYEtQmekeNWb9++znjH71g=
+      on_success: always
+      on_failure: never
+      on_pull_requests: false
+    -
+      rooms:
+        -
+          secure: YkKZc9WmzfhYHgcTO3XV/0wEzY3HTspMLesD/bUK3bCTifg0hm3LcizumaNNWLu5blu9BqTq8EtTX9hVVKVUjCSS0z+BQ/hVdDyE9TcRJHtw2ceTuJbHV9cXYJYigeT4U2NTCJkcLyLIC1sIplJ/IIu/JUplImf6CFosUI4bnUPD1rPpFtEcRcCLCyi6GYl8EtNxKb/GljSuvFEWJ8KZR0SIgW2Wz82bxn6nti3Z9yox3uv5002/mGeRL6hA9hjwElN8JL39yhAbADAGAsMWptnbmmOYGLU24xa+Ik3RyETLZQaBcDycEo1qt3kjSmlW7K02wXVFy/s3zQXccX8X2GtIZlU2nku5b+i6OnSm61ZVKIgtr3+xqONxSh/0Rt8exQUr9hl4GV5FvcmKDVSdPf0swDcNGsXhVU0kqQt03b1IF5lnYzLgP+mgrWOxRMbFB9Ka8yts9NAUbxBkVROYAyKny3U/7Xpp8I8vG4X6zCHcVcO7aD+pmPDuKCij98jTphXwexNC+VKVwu6AL8zJtb9EEAqLAtKfUWU/WoUgz/LFXalF0gJpe4LtlVQJrU4eL7ootsJb9xEPmI/8KshrMa2TSwiN/S1Zx2NnNWoZWMIgAU4lAjfRO6tog+JZw1FCcB8ZSe0Pw72N/RJjuOP/c1SUwe/QRiwBYZaavdNXvcg=
+      on_success: never
+      on_failure: always
+      on_pull_requests: false
