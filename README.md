@@ -20,7 +20,7 @@ Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii-jquery/v/stable.png)](https://packagist.org/packages/yiisoft/yii-jquery)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii-jquery/downloads.png)](https://packagist.org/packages/yiisoft/yii-jquery)
-[![Build Status](https://travis-ci.org/yiisoft/yii-jquery.svg?branch=master)](https://travis-ci.org/yiisoft/yii-jquery)
+[![Build Status](https://travis-ci.com/yiisoft/yii-jquery.svg?branch=master)](https://travis-ci.com/yiisoft/yii-jquery)
 
 
 Installation
