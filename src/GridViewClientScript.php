@@ -1,47 +1,38 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use yii\helpers\Yii;
 use yii\base\Behavior;
-use yii\widgets\Widget;
-use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\widgets\RunEvent;
+use Yiisoft\Widgets\Widget;
+use Yiisoft\Json\Json;
 
 /**
- * GridViewClientScript is a behavior for [[\yii\grid\GridView]] widget, which allows automatic filter submission via jQuery component.
+ * GridViewClientScript is a behavior for {@see \Yiisoft\Yii\DataView\GridView} widget, which allows automatic filter
+ * submission via jQuery component.
  *
  * A basic usage looks like the following:
  *
  * ```php
- * <?= yii\grid\GridView::widget([
- *     'dataProvider' => $dataProvider,
- *     'as clientScript' => [
+ * <?= \Yiisoft\Yii\DataView\GridView::widget()
+ *     ->dataProvider($dataProvider)
+ *     ->asClientScript([
  *         '__class' => Yiisoft\Yii\JQuery\GridViewClientScript::class
- *     ],
- *     'columns' => [
+ *     ])
+ *     ->columns([
  *         'id',
  *         'name',
  *         'created_at:datetime',
  *         // ...
- *     ],
- * ]) ?>
+ * ]); ?>
  * ```
  *
- * @see \yii\grid\GridView
+ * @see \Yiisoft\Yii\DataView\GridView
  * @see GridViewAsset
  *
- * @property \yii\grid\GridView $owner the owner of this behavior.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
+ * @property \Yiisoft\Yii\DataView\GridView $owner the owner of this behavior.
  */
 class GridViewClientScript extends Behavior
 {
@@ -49,7 +40,6 @@ class GridViewClientScript extends Behavior
      * @var string additional jQuery selector for selecting filter input fields.
      */
     public $filterSelector;
-
 
     /**
      * {@inheritdoc}
@@ -62,14 +52,16 @@ class GridViewClientScript extends Behavior
     }
 
     /**
-     * Handles [[Widget::EVENT_BEFORE_RUN]] event, registering related client script.
-     * @param \yii\base\Event $event event instance.
+     * Handles {@see \Yiisoft\Widget\Widget::EVENT_BEFORE_RUN} event, registering related client script.
+     *
+     * @param \Yiisoft\Widget\Event\BeforeRun $event event instance.
      */
-    public function beforeRun($event)
+    public function beforeRun(BeforeRun $event)
     {
         $id = $this->owner->options['id'];
         $options = Json::htmlEncode($this->getClientOptions());
         $view = $this->owner->getView();
+
         GridViewAsset::register($view);
         $view->registerJs("jQuery('#$id').yiiGridView($options);");
     }

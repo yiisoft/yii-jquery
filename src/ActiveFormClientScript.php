@@ -1,38 +1,26 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use yii\helpers\Json;
-use yii\widgets\ActiveForm;
+use Yiisoft\Json\Json;
+use Yiisoft\Widgets\ActiveForm;
 
 /**
- * ActiveFormClientScript is a behavior for [[\yii\widgets\ActiveForm]], which allows composition
+ * ActiveFormClientScript is a behavior for {@see \Yiisoft\Widgets\ActiveForm}, which allows composition
  * of the client-side and AJAX form validation via underlying JQuery plugin.
  *
  * Usage example:
  *
  * ```php
- * <?php $form = \yii\widgets\ActiveForm::begin([
- *     'id' => 'example-form',
- *     'as clientScript' => \Yiisoft\Yii\JQuery\ActiveFormClientScript::class,
- *     // ...
- * ]); ?>
+ * <?php $form = \Yiisoft\Widgets\ActiveForm::begin()
+ *     ->options(['id' => 'example-form')
+ *     ->asClientScript(\Yiisoft\Yii\JQuery\ActiveFormClientScript::class); ?>
  * ...
- * <?php \yii\widgets\ActiveForm::end(); ?>
+ * <?php \Yiisoft\Widgets\ActiveForm::end(); ?>
  * ```
- *
- * @see \yii\widgets\ActiveForm
- * @see \yii\widgets\ActiveFormClientScriptBehavior
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
-class ActiveFormClientScript extends \yii\widgets\ActiveFormClientScript
+class ActiveFormClientScript extends \Yiisoft\Widgets\ActiveFormClientScript
 {
     /**
      * {@inheritdoc}
@@ -40,20 +28,13 @@ class ActiveFormClientScript extends \yii\widgets\ActiveFormClientScript
     protected function defaultClientValidatorMap()
     {
         return [
-            \yii\validators\BooleanValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\BooleanValidator::class,
-            \yii\validators\CompareValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\CompareValidator::class,
-            \yii\validators\EmailValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\EmailValidator::class,
-            \yii\validators\FilterValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\FilterValidator::class,
-            \yii\validators\IpValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\IpValidator::class,
-            \yii\validators\NumberValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\NumberValidator::class,
-            \yii\validators\RangeValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\RangeValidator::class,
-            \yii\validators\RegularExpressionValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\RegularExpressionValidator::class,
-            \yii\validators\RequiredValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\RequiredValidator::class,
-            \yii\validators\StringValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\StringValidator::class,
-            \yii\validators\UrlValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\UrlValidator::class,
-            \yii\validators\ImageValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\ImageValidator::class,
-            \yii\validators\FileValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\FileValidator::class,
-            \Yiisoft\Yii\Captcha\CaptchaValidator::class => \Yiisoft\Yii\JQuery\Validators\Client\CaptchaClientValidator::class,
+            \Yiisoft\Validator\Rule\Boolean::class => \Yiisoft\Yii\JQuery\Validators\Client\BooleanValidator::class,
+            \Yiisoft\Validator\Rule\CompareTo::class => \Yiisoft\Yii\JQuery\Validators\Client\CompareValidator::class,
+            \Yiisoft\Validator\Rule\Email::class => \Yiisoft\Yii\JQuery\Validators\Client\EmailValidator::class,
+            \Yiisoft\Validator\Rule\Ip::class => \Yiisoft\Yii\JQuery\Validators\Client\IpValidator::class,
+            \Yiisoft\Validator\Rule\Number::class => \Yiisoft\Yii\JQuery\Validators\Client\NumberValidator::class,
+            \Yiisoft\Validator\Rule\Required::class => \Yiisoft\Yii\JQuery\Validators\Client\RequiredValidator::class,
+            \Yiisoft\Validator\Rule\Url::class => \Yiisoft\Yii\JQuery\Validators\Client\UrlValidator::class,
         ];
     }
 
@@ -65,8 +46,9 @@ class ActiveFormClientScript extends \yii\widgets\ActiveFormClientScript
         $id = $this->owner->options['id'];
         $options = Json::htmlEncode($this->getClientOptions());
         $attributes = Json::htmlEncode($this->attributes);
-        $view = $this->owner->getView();
+
         ActiveFormAsset::register($view);
+
         $view->registerJs("jQuery('#$id').yiiActiveForm($attributes, $options);");
     }
 

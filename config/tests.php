@@ -1,10 +1,15 @@
 <?php
+declare(strict_types=1);
+
+use Yiisoft\Aliases\Aliases;
 
 return [
-    'app' => [
-        'id' => 'test-app',
+    Aliases::class => [
+        '@root' => dirname(__DIR__, 1),
+        '@public' => '@root/tests/public',
+        '@basePath' => '@public/assets',
+        '@baseUrl'  => '/baseUrl',
+        '@npm' => '@root/node_modules',
+        '@web' => '@baseUrl',
     ],
-    'view' => [
-        '__class' => \yii\web\View::class
-    ]
 ];

@@ -1,9 +1,5 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
@@ -11,13 +7,10 @@ use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 
 /**
- * BooleanValidator composes client-side validation code from [[\yii\validators\BooleanValidator]].
+ * BooleanValidator composes client-side validation code from {@see Yiisoft\Validator\Rule\Boolean}.
  *
- * @see \yii\validators\BooleanValidator
+ * @see Yiisoft\Validator\Rule\Boolean
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class BooleanValidator extends ClientValidator
 {
@@ -33,9 +26,11 @@ class BooleanValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\BooleanValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
