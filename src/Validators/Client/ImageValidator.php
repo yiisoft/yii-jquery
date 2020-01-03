@@ -1,9 +1,5 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
@@ -14,9 +10,6 @@ use Yiisoft\Yii\JQuery\ValidationAsset;
  *
  * @see \yii\validators\ImageValidator
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class ImageValidator extends FileValidator
 {
@@ -27,6 +20,7 @@ class ImageValidator extends FileValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.image(attribute, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ', deferred);';
     }
 
@@ -35,6 +29,7 @@ class ImageValidator extends FileValidator
      * @param \yii\validators\ImageValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)

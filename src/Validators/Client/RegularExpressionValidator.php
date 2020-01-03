@@ -1,14 +1,10 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\helpers\Html;
-use yii\helpers\Json;
+use Yiisoft\Html\Html;
+use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 use yii\web\JsExpression;
@@ -18,9 +14,6 @@ use yii\web\JsExpression;
  *
  * @see \yii\validators\RegularExpressionValidator
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class RegularExpressionValidator extends ClientValidator
 {
@@ -31,6 +24,7 @@ class RegularExpressionValidator extends ClientValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.regularExpression(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 
@@ -39,6 +33,7 @@ class RegularExpressionValidator extends ClientValidator
      * @param \yii\validators\RegularExpressionValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
@@ -52,6 +47,7 @@ class RegularExpressionValidator extends ClientValidator
                 'attribute' => $model->getAttributeLabel($attribute),
             ]),
         ];
+
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
         }

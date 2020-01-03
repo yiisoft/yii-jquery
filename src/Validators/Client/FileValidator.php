@@ -1,15 +1,10 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use Yii;
-use yii\helpers\Html;
-use yii\helpers\Json;
+use Yiisoft\Html\Html;
+use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 use yii\web\JsExpression;
@@ -19,9 +14,6 @@ use yii\web\JsExpression;
  *
  * @see \yii\validators\FileValidator
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class FileValidator extends ClientValidator
 {
@@ -32,6 +24,7 @@ class FileValidator extends ClientValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.file(attribute, messages, ' . Json::encode($options) . ');';
     }
 
@@ -40,6 +33,7 @@ class FileValidator extends ClientValidator
      * @param \yii\validators\FileValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
@@ -47,6 +41,7 @@ class FileValidator extends ClientValidator
         $label = $model->getAttributeLabel($attribute);
 
         $options = [];
+
         if ($validator->message !== null) {
             $options['message'] = $validator->formatMessage($validator->message, [
                 'attribute' => $label,

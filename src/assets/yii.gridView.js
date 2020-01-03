@@ -2,12 +2,6 @@
  * Yii GridView widget.
  *
  * This is the JavaScript widget used by the yii\grid\GridView widget.
- *
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 1.0
  */
 (function ($) {
     $.fn.yiiGridView = function (method) {

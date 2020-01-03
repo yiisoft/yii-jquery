@@ -1,26 +1,19 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\helpers\Json;
+use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\PunycodeAsset;
 use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 use yii\web\JsExpression;
 
 /**
- * EmailValidator composes client-side validation code from [[\yii\validators\EmailValidator]].
+ * EmailValidator composes client-side validation code from {@see \Yiisoft\Validator\Rule\Email::class}.
  *
  * @see \yii\validators\EmailValidator
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class EmailValidator extends ClientValidator
 {
@@ -31,10 +24,13 @@ class EmailValidator extends ClientValidator
     {
         /* @var $validator \yii\validators\EmailValidator */
         ValidationAsset::register($view);
+
         if ($validator->enableIDN) {
             PunycodeAsset::register($view);
         }
+
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.email(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 
@@ -56,6 +52,7 @@ class EmailValidator extends ClientValidator
             ]),
             'enableIDN' => (bool)$validator->enableIDN,
         ];
+
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
         }
