@@ -15,9 +15,9 @@ use Yiisoft\Yii\JQuery\YiiAsset;
 use Yiisoft\Yii\JQuery\Tests\TestCase;
 
 /**
- * AssetBundleTest.
+ * AssetsTest.
  */
-final class AssetBundleTest extends TestCase
+final class AssetsTest extends TestCase
 {
     protected function tearDown(): void
     {
