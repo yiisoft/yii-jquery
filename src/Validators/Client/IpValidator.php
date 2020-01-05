@@ -1,27 +1,19 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use Yii;
-use yii\helpers\Html;
-use yii\helpers\Json;
+use Yiisoft\Html\Html;
+use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 use yii\web\JsExpression;
 
 /**
- * IpValidator composes client-side validation code from [[\yii\validators\IpValidator]].
+ * IpValidator composes client-side validation code from {@see \Yiisoft\Validator\Rule\Ip::class}.
  *
- * @see \yii\validators\IpValidator
+ * @see \Yiisoft\Validator\Rule\Ip::class
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class IpValidator extends ClientValidator
 {
@@ -32,6 +24,7 @@ class IpValidator extends ClientValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.ip(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 
@@ -40,6 +33,7 @@ class IpValidator extends ClientValidator
      * @param \yii\validators\IpValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
@@ -51,6 +45,7 @@ class IpValidator extends ClientValidator
             'noSubnet' => $validator->noSubnet,
             'hasSubnet' => $validator->hasSubnet,
         ];
+
         foreach ($messages as &$message) {
             $message = $validator->formatMessage($message, [
                 'attribute' => $model->getAttributeLabel($attribute),
@@ -67,6 +62,7 @@ class IpValidator extends ClientValidator
             'negation' => $validator->negation,
             'subnet' => $validator->subnet,
         ];
+
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
         }

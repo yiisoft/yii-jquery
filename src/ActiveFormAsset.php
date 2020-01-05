@@ -1,9 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use Yiisoft\Asset\AssetBundle;
+use Yiisoft\Assets\AssetBundle;
 
 /**
  * The asset bundle for the {@see ActiveForm} widget.
@@ -12,18 +12,13 @@ use Yiisoft\Asset\AssetBundle;
  */
 class ActiveFormAsset extends AssetBundle
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $sourcePath = __DIR__ . '/assets';
+    public ?string $basePath = '@basePath';
 
-    /**
-     * {@inheritdoc}
-     */
-    public $js = ['yii.activeForm.js'];
+    public ?string $baseUrl = '@web';
 
-    /**
-     * {@inheritdoc}
-     */
-    public $depends = [YiiAsset::class];
+    public ?string $sourcePath = __DIR__ . '/assets';
+
+    public array $js = ['yii.activeForm.js'];
+
+    public array $depends = [YiiAsset::class];
 }

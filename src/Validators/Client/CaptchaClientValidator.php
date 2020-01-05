@@ -1,9 +1,5 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
@@ -11,13 +7,10 @@ use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 
 /**
- * CaptchaClientValidator composes client-side validation code from [[CaptchaValidator]].
+ * CaptchaClientValidator composes client-side validation code from {@see CaptchaValidator}.
  *
  * @see CaptchaValidator
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class CaptchaClientValidator extends ClientValidator
 {

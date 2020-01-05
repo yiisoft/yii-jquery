@@ -1,25 +1,18 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\helpers\Json;
+use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 use yii\web\JsExpression;
 
 /**
- * NumberValidator composes client-side validation code from [[\yii\validators\NumberValidator]].
+ * NumberValidator composes client-side validation code from {@see \Yiisoft\Validator\Rule\Number::class}.
  *
- * @see \yii\validators\NumberValidator
+ * @see \Yiisoft\Validator\Rule\Number::class
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class NumberValidator extends ClientValidator
 {
@@ -30,6 +23,7 @@ class NumberValidator extends ClientValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.number(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 
@@ -38,6 +32,7 @@ class NumberValidator extends ClientValidator
      * @param \yii\validators\NumberValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
@@ -60,6 +55,7 @@ class NumberValidator extends ClientValidator
                 'min' => $validator->min,
             ]);
         }
+
         if ($validator->max !== null) {
             // ensure numeric value to make javascript comparison equal to PHP comparison
             // https://github.com/yiisoft/yii2/issues/3118
@@ -69,6 +65,7 @@ class NumberValidator extends ClientValidator
                 'max' => $validator->max,
             ]);
         }
+
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
         }

@@ -1,9 +1,5 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
@@ -15,9 +11,6 @@ use yii\validators\client\ClientValidator;
  *
  * @see \yii\validators\StringValidator
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class StringValidator extends ClientValidator
 {
@@ -28,6 +21,7 @@ class StringValidator extends ClientValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.string(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
     }
 
@@ -36,6 +30,7 @@ class StringValidator extends ClientValidator
      * @param \yii\validators\StringValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
@@ -55,6 +50,7 @@ class StringValidator extends ClientValidator
                 'min' => $validator->min,
             ]);
         }
+
         if ($validator->max !== null) {
             $options['max'] = $validator->max;
             $options['tooLong'] = $validator->formatMessage($validator->tooLong, [
@@ -62,6 +58,7 @@ class StringValidator extends ClientValidator
                 'max' => $validator->max,
             ]);
         }
+
         if ($validator->length !== null) {
             $options['is'] = $validator->length;
             $options['notEqual'] = $validator->formatMessage($validator->notEqual, [
@@ -69,6 +66,7 @@ class StringValidator extends ClientValidator
                 'length' => $validator->length,
             ]);
         }
+
         if ($validator->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
         }

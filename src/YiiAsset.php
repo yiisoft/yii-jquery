@@ -1,9 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use Yiisoft\Asset\AssetBundle;
+use Yiisoft\Assets\AssetBundle;
 
 /**
  * This asset bundle provides the base JavaScript files for the Yii Framework.
@@ -12,18 +12,13 @@ use Yiisoft\Asset\AssetBundle;
  */
 class YiiAsset extends AssetBundle
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $sourcePath = __DIR__ . '/assets';
+    public ?string $basePath = '@basePath';
 
-    /**
-     * {@inheritdoc}
-     */
-    public $js = ['yii.js'];
+    public ?string $baseUrl = '@web';
 
-    /**
-     * {@inheritdoc}
-     */
-    public $depends = [JqueryAsset::class];
+    public ?string $sourcePath = __DIR__ . '/assets';
+
+    public array $js = ['yii.js'];
+
+    public array $depends = [JqueryAsset::class];
 }

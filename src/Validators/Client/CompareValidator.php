@@ -1,24 +1,17 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use yii\helpers\Html;
+use Yiisoft\Html\Html;
 use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
 
 /**
- * CompareValidator composes client-side validation code from [[\yii\validators\CompareValidator]].
+ * CompareValidator composes client-side validation code from {@see \Yiisoft\Validator\Rule\CompareTo}.
  *
- * @see \yii\validators\CompareValidator
+ * @see \Yiisoft\Validator\Rule\CompareTo
  * @see ValidationAsset
- *
- * @author Paul Klimov <klimov.paul@gmail.com>
- * @since 1.0
  */
 class CompareValidator extends ClientValidator
 {
@@ -29,6 +22,7 @@ class CompareValidator extends ClientValidator
     {
         ValidationAsset::register($view);
         $options = $this->getClientOptions($validator, $model, $attribute);
+
         return 'yii.validation.compare(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
     }
 
@@ -37,6 +31,7 @@ class CompareValidator extends ClientValidator
      * @param \yii\validators\CompareValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)

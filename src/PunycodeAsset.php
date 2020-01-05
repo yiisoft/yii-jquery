@@ -1,9 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use Yiisoft\Asset\AssetBundle;
+use Yiisoft\Assets\AssetBundle;
 
 /**
  * This asset bundle provides the javascript files needed for the {@see EmailValidator} client validation.
@@ -14,15 +14,13 @@ use Yiisoft\Asset\AssetBundle;
  */
 class PunycodeAsset extends AssetBundle
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $sourcePath = '@npm/punycode';
+    public ?string $basePath = '@basePath';
 
-    /**
-     * {@inheritdoc}
-     */
-    public $js = [
+    public ?string $baseUrl = '@web';
+
+    public ?string $sourcePath = '@npm/punycode';
+
+    public array $js = [
         'punycode.js',
     ];
 }

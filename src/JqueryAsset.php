@@ -1,9 +1,9 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery;
 
-use Yiisoft\Asset\AssetBundle;
+use Yiisoft\Assets\AssetBundle;
 
 /**
  * This asset bundle provides the [jQuery](http://jquery.com/) JavaScript library.
@@ -12,8 +12,13 @@ use Yiisoft\Asset\AssetBundle;
  */
 class JqueryAsset extends AssetBundle
 {
-    public $sourcePath = '@npm/jquery/dist';
-    public $js = [
+    public ?string $basePath = '@basePath';
+
+    public ?string $baseUrl = '@web';
+
+    public ?string $sourcePath = '@npm/jquery/dist';
+
+    public array $js = [
         'jquery.js',
     ];
 }
