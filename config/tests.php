@@ -11,6 +11,5 @@ return [
         '@basePath' => '@public/assets',
         '@baseUrl'  => '/baseUrl',
         '@npm' => '@root/node_modules',
-        '@web' => '@baseUrl',
     ],
 ];

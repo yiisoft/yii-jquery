@@ -17,7 +17,7 @@ class PunycodeAsset extends AssetBundle
 {
     public ?string $basePath = '@basePath';
 
-    public ?string $baseUrl = '@web';
+    public ?string $baseUrl = '@baseUrl';
 
     public ?string $sourcePath = '@npm/punycode';
 
