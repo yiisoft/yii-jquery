@@ -7,6 +7,7 @@
         "test": "tests/js/tests"
     },
     "dependencies": {
+        "@composer-asset/yiisoft--assets": "file:./vendor/foxy/composer-asset/yiisoft/assets",
         "jquery": "^3.5.0"
     },
     "devDependencies": {
