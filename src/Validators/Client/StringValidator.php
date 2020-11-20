@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 
 /**
  * StringValidator composes client-side validation code from [[\yii\validators\StringValidator]].
@@ -28,6 +28,7 @@ class StringValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\StringValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated

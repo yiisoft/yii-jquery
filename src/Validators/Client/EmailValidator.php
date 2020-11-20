@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
+use yii\validators\client\ClientValidator;
+use yii\web\JsExpression;
 use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\PunycodeAsset;
 use Yiisoft\Yii\JQuery\ValidationAsset;
-use yii\validators\client\ClientValidator;
-use yii\web\JsExpression;
 
 /**
  * EmailValidator composes client-side validation code from {@see \Yiisoft\Validator\Rule\Email::class}.
@@ -37,9 +37,11 @@ class EmailValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\EmailValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)

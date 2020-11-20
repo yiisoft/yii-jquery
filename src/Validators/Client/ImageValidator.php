@@ -27,6 +27,7 @@ class ImageValidator extends FileValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\ImageValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated

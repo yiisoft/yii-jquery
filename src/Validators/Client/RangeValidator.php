@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 
 /**
  * RangeValidator composes client-side validation code from [[\yii\validators\RangeValidator]].
@@ -22,7 +22,7 @@ class RangeValidator extends ClientValidator
     {
         /* @var $validator \yii\validators\RangeValidator */
         if ($validator->range instanceof \Closure) {
-            $validator->range = call_user_func($validator->range, $model, $attribute);
+            $validator->range = ($validator->range)($model, $attribute);
         }
 
         ValidationAsset::register($view);
@@ -34,6 +34,7 @@ class RangeValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\RangeValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated

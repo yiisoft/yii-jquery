@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
+use yii\validators\client\ClientValidator;
+use yii\web\JsExpression;
 use Yiisoft\Html\Html;
 use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\ValidationAsset;
-use yii\validators\client\ClientValidator;
-use yii\web\JsExpression;
 
 /**
  * IpValidator composes client-side validation code from {@see \Yiisoft\Validator\Rule\Ip::class}.
@@ -31,6 +31,7 @@ class IpValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\IpValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated

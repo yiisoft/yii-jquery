@@ -4,38 +4,37 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Tests;
 
-use Yiisoft\Composer\Config\Builder;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Assets\AssetBundle;
 use Yiisoft\Assets\AssetManager;
-use Yiisoft\Files\FileHelper;
+use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Di\Container;
+use Yiisoft\Files\FileHelper;
 
 abstract class TestCase extends BaseTestCase
 {
     /**
-     * @var Aliases $aliases
+     * @var Aliases
      */
     protected $aliases;
     /**
-     * @var AssetManager $assetManager
+     * @var AssetManager
      */
     protected $assetManager;
     /**
-     * @var ContainerInterface $container
+     * @var ContainerInterface
      */
     private $container;
     /**
-     * @var LoggerInterface $logger
+     * @var LoggerInterface
      */
     protected $logger;
+
     /**
      * setUp
-     *
-     * @return void
      */
     protected function setUp(): void
     {
@@ -51,8 +50,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * tearDown
-     *
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -62,11 +59,10 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Asserting two strings equality ignoring line endings.
+     *
      * @param string $expected
      * @param string $actual
      * @param string $message
-     *
-     * @return void
      */
     protected function assertEqualsWithoutLE(string $expected, string $actual, string $message = ''): void
     {
@@ -100,8 +96,6 @@ abstract class TestCase extends BaseTestCase
      *
      * @param string $type
      * @param AssetBundle $bundle
-     *
-     * @return void
      */
     protected function sourcesPublishVerifyFiles(string $type, AssetBundle $bundle): void
     {

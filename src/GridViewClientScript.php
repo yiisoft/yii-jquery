@@ -7,8 +7,8 @@ namespace Yiisoft\Yii\JQuery;
 use yii\base\Behavior;
 use yii\helpers\Url;
 use yii\widgets\RunEvent;
-use Yiisoft\Widgets\Widget;
 use Yiisoft\Json\Json;
+use Yiisoft\Widgets\Widget;
 
 /**
  * GridViewClientScript is a behavior for {@see \Yiisoft\Yii\DataView\GridView} widget, which allows automatic filter
@@ -69,11 +69,12 @@ class GridViewClientScript extends Behavior
 
     /**
      * Returns the options for the grid view JS widget.
+     *
      * @return array the options
      */
     protected function getClientOptions()
     {
-        $filterUrl = isset($this->owner->filterUrl) ? $this->owner->filterUrl : Yii::getApp()->request->url;
+        $filterUrl = $this->owner->filterUrl ?? Yii::getApp()->request->url;
         $id = $this->owner->filterRowOptions['id'];
         $filterSelector = "#$id input, #$id select";
         if (isset($this->filterSelector)) {
