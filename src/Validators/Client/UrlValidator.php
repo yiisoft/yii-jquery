@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
+use yii\validators\client\ClientValidator;
+use yii\web\JsExpression;
 use Yiisoft\Json\Json;
 use Yiisoft\Yii\JQuery\PunycodeAsset;
 use Yiisoft\Yii\JQuery\ValidationAsset;
-use yii\validators\client\ClientValidator;
-use yii\web\JsExpression;
 
 /**
  * UrlValidator composes client-side validation code from [[\yii\validators\UrlValidator]].
@@ -37,6 +37,7 @@ class UrlValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \yii\validators\UrlValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated

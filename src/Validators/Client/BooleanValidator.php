@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 
 /**
  * BooleanValidator composes client-side validation code from {@see Yiisoft\Validator\Rule\Boolean}.

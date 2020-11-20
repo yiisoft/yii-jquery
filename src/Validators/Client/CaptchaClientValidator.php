@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\JQuery\Validators\Client;
 
-use Yiisoft\Yii\JQuery\ValidationAsset;
 use yii\validators\client\ClientValidator;
+use Yiisoft\Yii\JQuery\ValidationAsset;
 
 /**
  * CaptchaClientValidator composes client-side validation code from {@see CaptchaValidator}.
@@ -27,9 +27,11 @@ class CaptchaClientValidator extends ClientValidator
 
     /**
      * Returns the client-side validation options.
+     *
      * @param \Yiisoft\Yii\Captcha\CaptchaValidator $validator the server-side validator.
      * @param \yii\base\Model $model the model being validated
      * @param string $attribute the attribute name being validated
+     *
      * @return array the client-side validation options
      */
     public function getClientOptions($validator, $model, $attribute)
