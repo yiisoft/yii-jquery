@@ -20,7 +20,7 @@ use Yiisoft\Widgets\Widget;
  * <?= \Yiisoft\Yii\DataView\GridView::widget()
  *     ->dataProvider($dataProvider)
  *     ->asClientScript([
- *         '__class' => Yiisoft\Yii\JQuery\GridViewClientScript::class
+ *         'class' => Yiisoft\Yii\JQuery\GridViewClientScript::class
  *     ])
  *     ->columns([
  *         'id',
