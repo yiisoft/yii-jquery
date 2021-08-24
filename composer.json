@@ -23,7 +23,7 @@
         "nyholm/psr7": "^1.0",
         "psr/event-dispatcher": "1.0.0",
         "yiisoft/assets": "^1.0",
-        "yiisoft/html": "^1.0"
+        "yiisoft/html": "^2.0"
     },
     "require-dev": {
         "foxy/foxy": "^1.0",
