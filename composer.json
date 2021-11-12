@@ -37,8 +37,7 @@
         "yiisoft/di": "^3.0@dev",
         "yiisoft/event-dispatcher": "^1.0",
         "yiisoft/log": "^1.0",
-        "yiisoft/yii-dataview": "^3.0@dev",
-        "yiisoft/yii-web": "^3.0@dev"
+        "yiisoft/yii-dataview": "^3.0@dev"
     },
     "repositories": [
         {
