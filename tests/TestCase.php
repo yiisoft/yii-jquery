@@ -39,7 +39,8 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = require Builder::path('tests');
+        $config = ContainerConfig::create()
+            ->withDefinitions(require Builder::path('tests'));
         $this->container = new Container($config);
         $this->aliases = $this->container->get(Aliases::class);
         $this->assetManager = $this->container->get(AssetManager::class);
