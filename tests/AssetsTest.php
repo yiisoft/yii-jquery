@@ -48,10 +48,12 @@ final class AssetsTest extends TestCase
     {
         $bundle = new $bundleClass();
 
-        [$bundle->basePath, $bundle->baseUrl] = $this->assetManager->getPublish()->publish(
-            $this->assetManager,
-            $bundle
-        );
+        [$bundle->basePath, $bundle->baseUrl] = $this->assetManager
+            ->getPublish()
+            ->publish(
+                $this->assetManager,
+                $bundle
+            );
 
         foreach ($bundle->js as $filename) {
             $publishedFile = $bundle->basePath . DIRECTORY_SEPARATOR . $filename;
