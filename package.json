@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "chai": "^4.2.0",
-        "jsdom": "^15.2.1",
+        "jsdom": "^16.5.0",
         "leche": "^2.3.0",
         "mocha": "^6.2.2",
         "mocha-jsdom": "~2.0.0",
